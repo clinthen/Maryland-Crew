@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maryland Men's Crew</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        umd: {
+                            red: '#E21833',
+                            dark: '#111111',
+                            lightBg: '#F4F4F5'
+                        }
+                    },
+                    fontFamily: {
+                        bebas: ['"Bebas Neue"', 'sans-serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth transitions for view switching */
+        .view-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .view-section.active {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-umd-lightBg font-sans text-gray-900 antialiased min-h-screen flex flex-col">
+
+    <!-- NAVIGATION BAR -->
+    <nav class="bg-umd-red text-white py-4 px-6 sticky top-0 z-50 shadow-md w-full overflow-x-auto">
+        <div class="max-w-[1400px] mx-auto flex items-center justify-center gap-6 sm:gap-10 min-w-max">
+            <!-- Home link (Logo placeholder) -->
+            <a href="#" onclick="switchView('home')" class="font-bebas text-3xl tracking-wider mr-auto cursor-pointer">MD CREW</a>
+            
+            <a href="#" onclick="switchView('roster')" class="font-bold text-lg hover:text-gray-200 transition cursor-pointer">Roster</a>
+            <a href="#" onclick="switchView('schedule')" class="font-bold text-lg hover:text-gray-200 transition cursor-pointer">Schedule</a>
+            <a href="#" onclick="switchView('board')" class="font-bold text-lg hover:text-gray-200 transition cursor-pointer">Board & Staff</a>
+            <a href="#" onclick="switchView('home')" class="font-bold text-lg hover:text-gray-200 transition cursor-pointer">Recruiting</a>
+            <a href="#" onclick="switchView('home')" class="font-bold text-lg hover:text-gray-200 transition cursor-pointer">FAQ</a>
+            <a href="#" onclick="switchView('home')" class="font-bold text-lg hover:text-gray-200 transition cursor-pointer">Donate</a>
+            
+            <button class="border-2 border-white rounded-md px-4 py-1.5 font-bold text-lg hover:bg-white hover:text-umd-red transition ml-4">
+                Team Store
+            </button>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow w-full">
+
+        <!-- ================= HOME VIEW ================= -->
+        <section id="home-view" class="view-section active w-full pb-20">
+            
+            <!-- Hero Header -->
+            <div class="relative w-full h-[60vh] border-b-8 border-black flex items-center justify-center overflow-hidden bg-umd-dark">
+                <img src="https://images.unsplash.com/photo-1541427468627-c14b16279f04?auto=format&fit=crop&q=80&w=2000" alt="Rowing" class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay">
+                <div class="absolute inset-0 bg-gradient-to-t from-umd-dark to-transparent"></div>
+                <h1 class="relative z-10 font-bebas text-7xl md:text-9xl tracking-widest text-white uppercase text-center drop-shadow-[0_5px_5px_rgba(0,0,0,1)] px-4">
+                    MARYLAND MENS CREW.
+                </h1>
+            </div>
+
+            <!-- Alternating Sections -->
+            <div class="max-w-[1200px] mx-auto py-16 px-4 sm:px-6 lg:px-8 space-y-24 mt-8">
+                
+                <!-- Join the Team (Img L, Txt R) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="border-4 border-black shadow-[8px_8px_0px_0px_#000] bg-black overflow-hidden aspect-video group">
+                        <img src="https://images.unsplash.com/photo-1498623116890-37e912163d5d?auto=format&fit=crop&q=80&w=1000" alt="Rowing Team" class="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition duration-500">
+                    </div>
+                    <div class="p-8 border-4 border-black shadow-[8px_8px_0px_0px_#E21833] bg-white">
+                        <h2 class="font-bebas text-5xl md:text-6xl mb-4 uppercase text-black">Join the Team</h2>
+                        <p class="font-sans text-gray-800 text-lg mb-8 font-semibold leading-relaxed">
+                            We are actively recruiting for the Spring 2026 season. If you are interested in joining the team, please visit our recruitment page to learn more.
+                        </p>
+                        <button onclick="switchView('home')" class="bg-black text-white font-bebas text-2xl px-8 py-3 tracking-wider hover:bg-umd-red transition border-2 border-black hover:border-black shadow-[4px_4px_0px_0px_#E21833]">
+                            LEARN MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Where We Row (Txt L, Img R) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="order-2 md:order-1 p-8 border-4 border-black shadow-[8px_8px_0px_0px_#FFD200] bg-white">
+                        <h2 class="font-bebas text-5xl md:text-6xl mb-4 uppercase text-black">Where We Row</h2>
+                        <p class="font-sans text-gray-800 text-lg mb-6 font-semibold leading-relaxed">
+                            We row out of Bladensburg Waterfront Park, located on the Anacostia River in Bladensburg, Maryland. The park is around a 15 min drive from campus.
+                        </p>
+                    </div>
+                    <div class="order-1 md:order-2 border-4 border-black shadow-[8px_8px_0px_0px_#000] bg-black overflow-hidden aspect-video group">
+                        <img src="https://images.unsplash.com/photo-1506869640319-ce1c2472877a?auto=format&fit=crop&q=80&w=1000" alt="Bladensburg Waterfront" class="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition duration-500">
+                    </div>
+                </div>
+
+                <!-- Indoor Training (Img L, Txt R) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="border-4 border-black shadow-[8px_8px_0px_0px_#000] bg-black overflow-hidden aspect-video group">
+                        <!-- Used a gym/erg related placeholder -->
+                        <img src="https://images.unsplash.com/photo-1599058945522-28d584b6f4ff?auto=format&fit=crop&q=80&w=1000" alt="Erg Room" class="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition duration-500">
+                    </div>
+                    <div class="p-8 border-4 border-black shadow-[8px_8px_0px_0px_#E21833] bg-white">
+                        <h2 class="font-bebas text-5xl md:text-6xl mb-4 uppercase text-black leading-none">Indoor Training<br>Facility</h2>
+                        <p class="font-sans text-gray-800 text-lg mb-6 font-semibold leading-relaxed">
+                            When we can't go out on the water, we train at the team's Erg Room in Cole Field House. Training on the erg allows us to put in work off the water and stay in shape during the winter months.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Regattas (Txt L, Img R) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="order-2 md:order-1 p-8 border-4 border-black shadow-[8px_8px_0px_0px_#FFD200] bg-white">
+                        <h2 class="font-bebas text-5xl md:text-6xl mb-4 uppercase text-black">Regattas</h2>
+                        <p class="font-sans text-gray-800 text-lg mb-8 font-semibold leading-relaxed">
+                            Each season, the team competes at several regattas. They are perfect opportunities for us to show off our hard work and represent the University. Check out our schedule for the season here.
+                        </p>
+                        <button onclick="switchView('schedule')" class="bg-black text-white font-bebas text-2xl px-8 py-3 tracking-wider hover:bg-umd-red transition border-2 border-black hover:border-black shadow-[4px_4px_0px_0px_#FFD200]">
+                            VIEW SCHEDULE
+                        </button>
+                    </div>
+                    <div class="order-1 md:order-2 border-4 border-black shadow-[8px_8px_0px_0px_#000] bg-black overflow-hidden aspect-[4/3] md:aspect-video group">
+                        <img src="https://images.unsplash.com/photo-1582035251675-9b2f6bf79e2a?auto=format&fit=crop&q=80&w=1000" alt="Regatta Action" class="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition duration-500">
+                    </div>
+                </div>
+
+                <!-- Social (Img L, Txt R) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="border-4 border-black shadow-[8px_8px_0px_0px_#000] bg-black overflow-hidden aspect-[4/3] md:aspect-video group">
+                        <img src="https://images.unsplash.com/photo-1523580494112-071d556ca199?auto=format&fit=crop&q=80&w=1000" alt="Social Events" class="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition duration-500">
+                    </div>
+                    <div class="p-8 border-4 border-black shadow-[8px_8px_0px_0px_#E21833] bg-white">
+                        <h2 class="font-bebas text-5xl md:text-6xl mb-4 uppercase text-black">Social</h2>
+                        <p class="font-sans text-gray-800 text-lg mb-8 font-semibold leading-relaxed">
+                            When we are not training or competing, we spend plenty of time together as a team. In addition to hanging out around campus, we host social events with other clubs, and a formal at the end of the year.
+                        </p>
+                        <button onclick="switchView('roster')" class="bg-black text-white font-bebas text-2xl px-8 py-3 tracking-wider hover:bg-umd-red transition border-2 border-black hover:border-black shadow-[4px_4px_0px_0px_#E21833]">
+                            MEET THE TEAM
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= ROSTER VIEW ================= -->
+        <section id="roster-view" class="view-section w-full bg-white min-h-screen">
+            <div class="max-w-[1400px] mx-auto py-16 px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex items-center justify-between mb-10">
+                    <h2 class="font-bebas text-5xl md:text-6xl tracking-wide text-gray-900">ROSTER</h2>
+                    <img src="https://placehold.co/80x80/E21833/FFF?text=M" alt="M Logo" class="h-16 w-16 object-contain hidden sm:block">
+                </div>
+
+                <!-- Roster Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12">
+                    
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Clint+Hensley" alt="Clint Hensley" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">1</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">CLINT HENSLEY</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Novice Coach</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Hemin" alt="Hemin" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">4</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">HEMIN</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Varsity</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Eddie+Cameron" alt="Eddie Cameron" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">5</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">EDDIE CAMERON</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Varsity</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Derrick+Jones" alt="Derrick Jones" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">6</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">DERRICK JONES</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Novice</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Justin+Lee" alt="Justin Lee" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">7</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">JUSTIN LEE</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Varsity</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Erik+Johnson" alt="Erik Johnson" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">8</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">ERIK JOHNSON</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Novice</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Marios+Kalpakis" alt="Marios Kalpakis" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">9</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">MARIOS KALPAKIS</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Varsity</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Shomit+Nazare" alt="Shomit Nazare" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">10</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">SHOMIT NAZARE</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Novice</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Max+Gramling" alt="Max Gramling" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">11</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">MAX GRAMLING</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Varsity</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Peter+Bundy" alt="Peter Bundy" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">12</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">PETER BUNDY</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Novice</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=William+Fingles" alt="William Fingles" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">13</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">WILLIAM FINGLES</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Varsity</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Noah+Ramos" alt="Noah Ramos" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">14</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">NOAH RAMOS</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Varsity Coach</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Maximilian+Gisler" alt="Maximilian Gisler" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">15</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">MAXIMILIAN GISLER</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Varsity</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Liam+Kehoe" alt="Liam Kehoe" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">22</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">LIAM KEHOE</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Novice</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Justin+Mooney" alt="Justin Mooney" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">23</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">JUSTIN MOONEY</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Varsity</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Anirudh+Krishna" alt="Anirudh Krishna" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">24</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">ANIRUDH KRISHNA</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Novice</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Sidney+Trzepacz" alt="Sidney Trzepacz" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">25</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">SIDNEY TRZEPACZ</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Varsity</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Stewart+Greenleaf" alt="Stewart Greenleaf" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">27</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">STEWART GREENLEAF</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Varsity</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Peter+Micciche" alt="Peter Micciche" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">28</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">PETER MICCICHE</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Varsity</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Reid+Elverson" alt="Reid Elverson" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">29</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">REID ELVERSON</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Varsity</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Theodore+Profit" alt="Theodore Profit" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">30</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">THEODORE PROFIT</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Varsity</span></div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col group">
+                        <div class="relative w-full aspect-[4/5] bg-gray-100 rounded-t-2xl overflow-hidden">
+                            <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Tyler+Williams" alt="Tyler Williams" class="w-full h-full object-cover object-top mix-blend-multiply">
+                            <div class="absolute -bottom-0 left-4 bg-black text-white font-bebas text-xl w-10 h-10 flex items-center justify-center translate-y-1/2 rounded-sm shadow-md z-10">31</div>
+                        </div>
+                        <div class="bg-white border-b-4 border-white group-hover:border-umd-red transition pt-8 pb-4 px-2">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Roster</p>
+                            <h3 class="font-bebas text-3xl leading-none text-gray-900 mb-2">TYLER WILLIAMS</h3>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-gray-500"><span>Varsity</span></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SCHEDULE VIEW ================= -->
+        <section id="schedule-view" class="view-section w-full bg-umd-lightBg min-h-screen">
+            <div class="max-w-[1200px] mx-auto py-16 px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex items-center justify-between mb-10">
+                    <div>
+                        <h4 class="font-bold text-sm tracking-[0.2em] text-gray-500 uppercase mb-1">Fall 2026</h4>
+                        <h2 class="font-bebas text-5xl md:text-6xl tracking-wide text-gray-900">REGATTA SCHEDULE</h2>
+                    </div>
+                    <img src="https://placehold.co/80x80/E21833/FFF?text=M" alt="M Logo" class="h-16 w-16 object-contain hidden sm:block">
+                </div>
+
+                <!-- Schedule List -->
+                <div class="flex flex-col gap-4">
+                    
+                    <!-- Event 1 -->
+                    <div class="flex flex-col md:flex-row bg-white border-l-8 border-umd-red shadow-sm hover:shadow-md transition">
+                        <div class="bg-umd-dark text-white p-6 flex flex-col justify-center items-center min-w-[160px]">
+                            <span class="font-bebas text-2xl tracking-widest text-gray-400">OCT</span>
+                            <span class="font-bebas text-5xl">3 - 4</span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-center">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Head Race</p>
+                            <h3 class="font-bebas text-4xl text-gray-900 mb-1">HEAD OF THE OHIO</h3>
+                            <p class="font-sans font-semibold text-gray-500 flex items-center gap-2">
+                                <i class="fa-solid fa-location-dot text-umd-red"></i> Pittsburgh, PA
+                            </p>
+                        </div>
+                        <div class="p-6 flex items-center justify-start md:justify-end border-t md:border-t-0 md:border-l border-gray-100">
+                            <button class="bg-umd-lightBg text-gray-900 font-bold px-6 py-3 rounded-md hover:bg-gray-200 transition">
+                                Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Event 2 -->
+                    <div class="flex flex-col md:flex-row bg-white border-l-8 border-black shadow-sm hover:shadow-md transition">
+                        <div class="bg-umd-dark text-white p-6 flex flex-col justify-center items-center min-w-[160px]">
+                            <span class="font-bebas text-2xl tracking-widest text-gray-400">OCT</span>
+                            <span class="font-bebas text-5xl">11</span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-center">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Head Race</p>
+                            <h3 class="font-bebas text-4xl text-gray-900 mb-1">OCCOQUAN CHASE</h3>
+                            <p class="font-sans font-semibold text-gray-500 flex items-center gap-2">
+                                <i class="fa-solid fa-location-dot text-umd-red"></i> Occoquan, VA
+                            </p>
+                        </div>
+                        <div class="p-6 flex items-center justify-start md:justify-end border-t md:border-t-0 md:border-l border-gray-100">
+                            <button class="bg-umd-lightBg text-gray-900 font-bold px-6 py-3 rounded-md hover:bg-gray-200 transition">
+                                Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Event 3 -->
+                    <div class="flex flex-col md:flex-row bg-white border-l-8 border-umd-red shadow-sm hover:shadow-md transition">
+                        <div class="bg-umd-dark text-white p-6 flex flex-col justify-center items-center min-w-[160px]">
+                            <span class="font-bebas text-2xl tracking-widest text-gray-400">OCT</span>
+                            <span class="font-bebas text-5xl">24 - 25</span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-center">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Head Race</p>
+                            <h3 class="font-bebas text-4xl text-gray-900 mb-1">HEAD OF THE SCHUYLKILL</h3>
+                            <p class="font-sans font-semibold text-gray-500 flex items-center gap-2">
+                                <i class="fa-solid fa-location-dot text-umd-red"></i> Philadelphia, PA
+                            </p>
+                        </div>
+                        <div class="p-6 flex items-center justify-start md:justify-end border-t md:border-t-0 md:border-l border-gray-100">
+                            <button class="bg-umd-lightBg text-gray-900 font-bold px-6 py-3 rounded-md hover:bg-gray-200 transition">
+                                Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Event 4 -->
+                    <div class="flex flex-col md:flex-row bg-white border-l-8 border-black shadow-sm hover:shadow-md transition">
+                        <div class="bg-umd-dark text-white p-6 flex flex-col justify-center items-center min-w-[160px]">
+                            <span class="font-bebas text-2xl tracking-widest text-gray-400">OCT - NOV</span>
+                            <span class="font-bebas text-5xl">31 - 1</span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-center">
+                            <p class="text-[10px] font-bold text-gray-900 uppercase tracking-widest mb-1">Head Race</p>
+                            <h3 class="font-bebas text-4xl text-gray-900 mb-1">HEAD OF THE OCCOQUAN</h3>
+                            <p class="font-sans font-semibold text-gray-500 flex items-center gap-2">
+                                <i class="fa-solid fa-location-dot text-umd-red"></i> Occoquan, VA
+                            </p>
+                        </div>
+                        <div class="p-6 flex items-center justify-start md:justify-end border-t md:border-t-0 md:border-l border-gray-100">
+                            <button class="bg-umd-lightBg text-gray-900 font-bold px-6 py-3 rounded-md hover:bg-gray-200 transition">
+                                Details
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= BOARD & STAFF VIEW ================= -->
+        <section id="board-view" class="view-section w-full bg-umd-lightBg min-h-screen">
+            <div class="max-w-[1200px] mx-auto py-16 px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex items-center justify-between mb-10">
+                    <div>
+                        <h4 class="font-bold text-sm tracking-[0.2em] text-gray-500 uppercase mb-1">Leadership</h4>
+                        <h2 class="font-bebas text-5xl md:text-6xl tracking-wide text-gray-900">2027 BOARD & STAFF</h2>
+                    </div>
+                    <img src="https://placehold.co/80x80/E21833/FFF?text=M" alt="M Logo" class="h-16 w-16 object-contain hidden sm:block">
+                </div>
+
+                <!-- Board Section -->
+                <div class="mb-16">
+                    <h3 class="font-bebas text-4xl text-umd-red mb-6 border-b-4 border-black pb-2 inline-block">2027 EXECUTIVE BOARD</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                        
+                        <div class="bg-white p-6 rounded-xl border-l-8 border-black shadow-sm hover:shadow-md transition">
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">President</p>
+                            <h4 class="font-bebas text-3xl text-gray-900">HEMIN</h4>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl border-l-8 border-umd-red shadow-sm hover:shadow-md transition">
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Vice President</p>
+                            <h4 class="font-bebas text-3xl text-gray-900">MAX</h4>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl border-l-8 border-black shadow-sm hover:shadow-md transition">
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Treasurer</p>
+                            <h4 class="font-bebas text-3xl text-gray-900">EDDIE</h4>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl border-l-8 border-umd-red shadow-sm hover:shadow-md transition">
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Equipment Manager</p>
+                            <h4 class="font-bebas text-3xl text-gray-900">CLINT</h4>
+                        </div>
+                        
+                        <!-- Postponed Vote Style -->
+                        <div class="bg-white p-6 rounded-xl border-l-8 border-gray-300 shadow-sm transition opacity-75">
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Fundraising Officer</p>
+                            <h4 class="font-bebas text-2xl text-gray-400 italic">(VOTE POSTPONED)</h4>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl border-l-8 border-black shadow-sm hover:shadow-md transition">
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Public Relations Officer</p>
+                            <h4 class="font-bebas text-3xl text-gray-900">LIAM</h4>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl border-l-8 border-umd-red shadow-sm hover:shadow-md transition">
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Social Chair</p>
+                            <h4 class="font-bebas text-3xl text-gray-900">MAX GIES</h4>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl border-l-8 border-black shadow-sm hover:shadow-md transition">
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Apparel Officer</p>
+                            <h4 class="font-bebas text-3xl text-gray-900">BRADY</h4>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-xl border-l-8 border-umd-red shadow-sm hover:shadow-md transition">
+                            <p class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-1">Alumni Board Liaison</p>
+                            <h4 class="font-bebas text-3xl text-gray-900">CLINT</h4>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Coaches Section -->
+                <div>
+                    <h3 class="font-bebas text-4xl text-umd-red mb-6 border-b-4 border-black pb-2 inline-block">COACHING STAFF</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        
+                        <div class="bg-umd-dark text-white p-8 rounded-xl border-l-8 border-umd-red shadow-md flex flex-col justify-center">
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Varsity Coach</p>
+                            <h4 class="font-bebas text-5xl mb-2">NOAH RAMOS</h4>
+                            <p class="font-sans text-sm text-gray-400">Head Coach of the Varsity Squad</p>
+                        </div>
+                        
+                        <div class="bg-umd-dark text-white p-8 rounded-xl border-l-8 border-black shadow-md flex flex-col justify-center">
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Novice Coach</p>
+                            <h4 class="font-bebas text-5xl mb-2">CLINT HENSLEY</h4>
+                            <p class="font-sans text-sm text-gray-400">Head Coach of the Novice Squad</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-umd-dark text-white py-8 mt-auto border-t-4 border-umd-red">
+        <div class="max-w-[1400px] mx-auto px-4 text-center">
+            <p class="font-bebas text-xl text-gray-400 tracking-widest">&copy; 2026 MARYLAND MEN'S CREW</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVITY SCRIPT -->
+    <script>
+        function switchView(viewId) {
+            // Hide all sections
+            document.querySelectorAll('.view-section').forEach(section => {
+                section.classList.remove('active');
+                // slight delay for fade out effect could go here, but keeping it snappy
+            });
+            
+            // Show target section
+            const target = document.getElementById(viewId + '-view');
+            if(target) {
+                target.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
