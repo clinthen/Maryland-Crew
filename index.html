@@ -53,9 +53,9 @@
 <body class="bg-umd-gray font-inter text-umd-black overflow-x-hidden flex flex-col min-h-screen">
 
     <!-- NAVIGATION BAR -->
-    <nav class="bg-umd-red text-umd-white py-4 px-6 md:px-8 flex justify-between items-center sticky top-0 z-50 shadow-xl border-b-4 border-umd-gold">
+    <nav class="bg-umd-red text-umd-white py-3 px-6 md:px-8 flex justify-between items-center sticky top-0 z-50 shadow-xl border-b-4 border-umd-gold">
         <button type="button" onclick="switchView('home')" class="flex items-center gap-3 cursor-pointer text-left focus:outline-none">
-            <div class="bg-umd-black text-umd-gold font-bebas text-2xl px-2.5 py-0.5 border-2 border-umd-white">M</div>
+            <img src="KnightCrestTransp-06.jpg" onerror="this.src='https://placehold.co/60x60/0F0F12/FFD200?text=M'" alt="Maryland Men's Crew Crest" class="w-11 h-11 object-contain bg-umd-black border-2 border-umd-white">
             <span class="font-bebas text-4xl tracking-wider m-0">MD CREW</span>
         </button>
 
@@ -97,6 +97,7 @@
             <div class="relative min-h-[600px] w-full bg-umd-black border-b-8 border-umd-black overflow-hidden flex items-center justify-center py-20">
                 <img src="main_rowing.jpg" onerror="this.src='https://placehold.co/1600x900/0F0F12/FFFFFF?text=Maryland+Mens+Crew'" alt="Maryland Men's Crew" class="absolute inset-0 w-full h-full object-cover opacity-45">
                 <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+                    <img src="KnightCrestTransp-06.jpg" onerror="this.src='https://placehold.co/120x120/0F0F12/FFD200?text=M'" alt="Maryland Crew Crest" class="w-24 h-24 object-contain mx-auto mb-4 border-2 border-umd-gold bg-umd-black p-1">
                     <div class="inline-block bg-umd-red text-umd-white font-bold uppercase tracking-widest text-xs px-4 py-1.5 border-2 border-umd-white mb-6">
                         Est. 1999 &bull; College Park, Maryland
                     </div>
@@ -160,7 +161,7 @@
                 <div class="flex flex-col md:flex-row items-center gap-12 group">
                     <div class="w-full md:w-1/2 relative">
                         <div class="absolute inset-0 bg-umd-gold translate-x-4 translate-y-4 border-4 border-umd-black"></div>
-                        <img src="ergroom.jpg" onerror="this.src='https://placehold.co/800x600/0F0F12/FFFFFF?text=Cole+Field+House+Erg+Room'" alt="Cole Field House Erg Room" class="relative z-10 w-full h-[380px] object-cover border-4 border-umd-black grayscale group-hover:grayscale-0 transition duration-500">
+                        <img src="erg_room.jpg" onerror="this.src='https://placehold.co/800x600/0F0F12/FFFFFF?text=Cole+Field+House+Erg+Room'" alt="Cole Field House Erg Room" class="relative z-10 w-full h-[380px] object-cover border-4 border-umd-black transition duration-500">
                     </div>
                     <div class="w-full md:w-1/2">
                         <span class="bg-umd-gold text-umd-black font-bold text-xs uppercase tracking-widest px-3 py-1 border border-umd-black">Winter &amp; Land Training</span>
@@ -397,127 +398,134 @@
         <section id="board" class="view-section w-full max-w-7xl mx-auto px-4 py-16">
             <div class="flex justify-between items-end mb-12 border-b-8 border-umd-black pb-4">
                 <div>
-                    <p class="font-bold text-umd-red uppercase tracking-widest text-sm mb-1">Executive Leadership</p>
+                    <p class="font-bold text-umd-red uppercase tracking-widest text-sm mb-1">2027 Leadership</p>
                     <h2 class="font-bebas text-7xl md:text-8xl tracking-tight m-0 text-umd-black leading-none">BOARD &amp; STAFF</h2>
                 </div>
                 <div class="bg-umd-red text-umd-white font-bebas text-4xl px-6 py-2 border-4 border-umd-black">2027 TERM</div>
             </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- PART 1: EXECUTIVE BOARD -->
+            <h3 class="font-bebas text-5xl mb-8 text-umd-black border-b-4 border-umd-red pb-2 inline-block">Executive Board</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- President -->
-                <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#0F0F12]">
-                    <div class="relative bg-umd-black h-[380px]">
+                <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#E21833]">
+                    <div class="relative bg-umd-black h-[360px]">
                         <img src="Hemin.jpg" onerror="this.src='https://placehold.co/400x500/0F0F12/FFFFFF?text=Hemin+Khalid'" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition duration-500" alt="Hemin Khalid">
                     </div>
-                    <div class="p-6 text-center bg-umd-white">
+                    <div class="p-5 text-center bg-umd-white">
                         <p class="font-bold text-umd-red uppercase tracking-widest text-xs mb-1">President</p>
-                        <h3 class="font-bebas text-4xl uppercase">Hemin Khalid</h3>
+                        <h4 class="font-bebas text-4xl uppercase">Hemin Khalid</h4>
                     </div>
                 </div>
 
                 <!-- Vice President -->
-                <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#0F0F12]">
-                    <div class="relative bg-umd-black h-[380px]">
+                <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#E21833]">
+                    <div class="relative bg-umd-black h-[360px]">
                         <img src="Max_Gram.jpg" onerror="this.src='https://placehold.co/400x500/0F0F12/FFFFFF?text=Max+Gramling'" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition duration-500" alt="Max Gramling">
                     </div>
-                    <div class="p-6 text-center bg-umd-white">
+                    <div class="p-5 text-center bg-umd-white">
                         <p class="font-bold text-umd-red uppercase tracking-widest text-xs mb-1">Vice President</p>
-                        <h3 class="font-bebas text-4xl uppercase">Max Gramling</h3>
-                    </div>
-                </div>
-
-                <!-- Treasurer -->
-                <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#0F0F12]">
-                    <div class="relative bg-umd-black h-[380px]">
-                        <img src="Edward.jpg" onerror="this.src='https://placehold.co/400x500/0F0F12/FFFFFF?text=Eddie+Cameron'" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition duration-500" alt="Eddie Cameron">
-                    </div>
-                    <div class="p-6 text-center bg-umd-white">
-                        <p class="font-bold text-umd-red uppercase tracking-widest text-xs mb-1">Treasurer</p>
-                        <h3 class="font-bebas text-4xl uppercase">Eddie Cameron</h3>
+                        <h4 class="font-bebas text-4xl uppercase">Max Gramling</h4>
                     </div>
                 </div>
 
                 <!-- Equipment Manager -->
-                <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#0F0F12]">
-                    <div class="relative bg-umd-black h-[380px]">
+                <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#FFD200]">
+                    <div class="relative bg-umd-black h-[360px]">
                         <img src="clint.jpg" onerror="this.src='https://placehold.co/400x500/0F0F12/FFFFFF?text=Clint+Hensley'" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition duration-500" alt="Clint Hensley">
                     </div>
-                    <div class="p-6 text-center bg-umd-white">
-                        <p class="font-bold text-umd-black uppercase tracking-widest text-xs mb-1">Equipment Manager</p>
-                        <h3 class="font-bebas text-4xl uppercase">Clint Hensley</h3>
+                    <div class="p-5 text-center bg-umd-white">
+                        <p class="font-bold text-umd-red uppercase tracking-widest text-xs mb-1">Equipment Manager</p>
+                        <h4 class="font-bebas text-4xl uppercase">Clint Hensley</h4>
                     </div>
                 </div>
 
+                <!-- Treasurer -->
+                <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#E21833]">
+                    <div class="relative bg-umd-black h-[360px]">
+                        <img src="Edward.jpg" onerror="this.src='https://placehold.co/400x500/0F0F12/FFFFFF?text=Eddie+Cameron'" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition duration-500" alt="Eddie Cameron">
+                    </div>
+                    <div class="p-5 text-center bg-umd-white">
+                        <p class="font-bold text-umd-red uppercase tracking-widest text-xs mb-1">Treasurer</p>
+                        <h4 class="font-bebas text-4xl uppercase">Eddie Cameron</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART 2: GENERAL BOARD -->
+            <h3 class="font-bebas text-5xl mt-16 mb-8 text-umd-black border-b-4 border-umd-black pb-2 inline-block">General Board</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Fundraising Officer -->
                 <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#0F0F12]">
-                    <div class="relative bg-umd-black h-[380px] flex items-center justify-center">
+                    <div class="relative bg-umd-black h-[360px] flex items-center justify-center">
                         <span class="font-bebas text-6xl text-gray-600">VACANT</span>
                     </div>
-                    <div class="p-6 text-center bg-umd-white">
+                    <div class="p-5 text-center bg-umd-white">
                         <p class="font-bold text-gray-500 uppercase tracking-widest text-xs mb-1">Fundraising Officer</p>
-                        <h3 class="font-bebas text-4xl uppercase text-gray-400">N/A</h3>
+                        <h4 class="font-bebas text-4xl uppercase text-gray-400">N/A</h4>
                     </div>
                 </div>
 
                 <!-- Public Relations Officer -->
                 <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#0F0F12]">
-                    <div class="relative bg-umd-black h-[380px]">
+                    <div class="relative bg-umd-black h-[360px]">
                         <img src="Liam_Ke.jpg" onerror="this.src='https://placehold.co/400x500/0F0F12/FFFFFF?text=Liam+Kehoe'" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition duration-500" alt="Liam Kehoe">
                     </div>
-                    <div class="p-6 text-center bg-umd-white">
+                    <div class="p-5 text-center bg-umd-white">
                         <p class="font-bold text-umd-black uppercase tracking-widest text-xs mb-1">Public Relations Officer</p>
-                        <h3 class="font-bebas text-4xl uppercase">Liam Kehoe</h3>
+                        <h4 class="font-bebas text-4xl uppercase">Liam Kehoe</h4>
                     </div>
                 </div>
 
                 <!-- Social Chair -->
                 <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#0F0F12]">
-                    <div class="relative bg-umd-black h-[380px]">
+                    <div class="relative bg-umd-black h-[360px]">
                         <img src="max_gies.jpg" onerror="this.src='https://placehold.co/400x500/0F0F12/FFFFFF?text=Maximilian+Gisler'" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition duration-500" alt="Maximilian Gisler">
                     </div>
-                    <div class="p-6 text-center bg-umd-white">
+                    <div class="p-5 text-center bg-umd-white">
                         <p class="font-bold text-umd-black uppercase tracking-widest text-xs mb-1">Social Chair</p>
-                        <h3 class="font-bebas text-4xl uppercase">Maximilian Gisler</h3>
+                        <h4 class="font-bebas text-4xl uppercase">Maximilian Gisler</h4>
                     </div>
                 </div>
 
                 <!-- Apparel Officer -->
                 <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#0F0F12]">
-                    <div class="relative bg-umd-black h-[380px]">
+                    <div class="relative bg-umd-black h-[360px]">
                         <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Brady+McLaren" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition duration-500" alt="Brady McLaren">
                     </div>
-                    <div class="p-6 text-center bg-umd-white">
+                    <div class="p-5 text-center bg-umd-white">
                         <p class="font-bold text-umd-black uppercase tracking-widest text-xs mb-1">Apparel Officer</p>
-                        <h3 class="font-bebas text-4xl uppercase">Brady McLaren</h3>
+                        <h4 class="font-bebas text-4xl uppercase">Brady McLaren</h4>
                     </div>
                 </div>
 
                 <!-- Alumni Board Liaison -->
                 <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#0F0F12]">
-                    <div class="relative bg-umd-black h-[380px]">
+                    <div class="relative bg-umd-black h-[360px]">
                         <img src="clint.jpg" onerror="this.src='https://placehold.co/400x500/0F0F12/FFFFFF?text=Clint+Hensley'" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition duration-500" alt="Clint Hensley">
                     </div>
-                    <div class="p-6 text-center bg-umd-white">
+                    <div class="p-5 text-center bg-umd-white">
                         <p class="font-bold text-umd-black uppercase tracking-widest text-xs mb-1">Alumni Board Liaison</p>
-                        <h3 class="font-bebas text-4xl uppercase">Clint Hensley</h3>
+                        <h4 class="font-bebas text-4xl uppercase">Clint Hensley</h4>
                     </div>
                 </div>
             </div>
 
+            <!-- COACHING STAFF -->
             <h3 class="font-bebas text-5xl mt-16 mb-8 text-umd-black border-b-4 border-umd-black pb-2 inline-block">Coaching Staff</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="bg-umd-black text-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col sm:flex-row items-center shadow-[6px_6px_0px_0px_#E21833]">
                     <img src="Noah-R.jpg" onerror="this.src='https://placehold.co/400x500/0F0F12/FFFFFF?text=Noah+Ramos'" class="w-full sm:w-48 h-64 sm:h-full object-cover border-b-4 sm:border-b-0 sm:border-r-4 border-umd-red" alt="Noah Ramos">
                     <div class="p-8">
                         <p class="font-bold text-umd-gold uppercase tracking-widest text-xs mb-2">Varsity Coach</p>
-                        <h3 class="font-bebas text-5xl uppercase">Noah Ramos</h3>
+                        <h4 class="font-bebas text-5xl uppercase">Noah Ramos</h4>
                     </div>
                 </div>
                 <div class="bg-umd-black text-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col sm:flex-row items-center shadow-[6px_6px_0px_0px_#FFD200]">
                     <img src="clint.jpg" onerror="this.src='https://placehold.co/400x500/0F0F12/FFFFFF?text=Clint+Hensley'" class="w-full sm:w-48 h-64 sm:h-full object-cover border-b-4 sm:border-b-0 sm:border-r-4 border-umd-gold" alt="Clint Hensley">
                     <div class="p-8">
                         <p class="font-bold text-umd-gold uppercase tracking-widest text-xs mb-2">Novice Coach</p>
-                        <h3 class="font-bebas text-5xl uppercase">Clint Hensley</h3>
+                        <h4 class="font-bebas text-5xl uppercase">Clint Hensley</h4>
                     </div>
                 </div>
             </div>
@@ -1139,9 +1147,12 @@
     <!-- FOOTER -->
     <footer class="bg-umd-black text-umd-white border-t-8 border-umd-red py-12 px-6 mt-auto">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-center md:text-left">
-                <h2 class="font-bebas text-4xl tracking-wider text-umd-white">MARYLAND MEN'S CREW</h2>
-                <p class="text-xs uppercase tracking-widest text-gray-400 mt-1">Bladensburg Waterfront Park &bull; Cole Field House &bull; College Park, MD</p>
+            <div class="flex items-center gap-4 text-center md:text-left">
+                <img src="KnightCrestTransp-06.jpg" onerror="this.src='https://placehold.co/56x56/0F0F12/FFD200?text=M'" alt="Maryland Crew Crest" class="w-14 h-14 object-contain border-2 border-umd-gold">
+                <div>
+                    <h2 class="font-bebas text-4xl tracking-wider text-umd-white">MARYLAND MEN'S CREW</h2>
+                    <p class="text-xs uppercase tracking-widest text-gray-400 mt-1">Bladensburg Waterfront Park &bull; Cole Field House &bull; College Park, MD</p>
+                </div>
             </div>
             <div class="flex flex-wrap justify-center gap-6 font-bold text-xs uppercase tracking-widest">
                 <button type="button" onclick="switchView('home')" class="hover:text-umd-gold cursor-pointer">Home</button>
