@@ -11,7 +11,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -24,9 +24,9 @@
                         umd: {
                             red: '#E21833',
                             gold: '#FFD200',
-                            black: '#0F0F12',
+                            black: '#0A0A0D',
                             white: '#FFFFFF',
-                            gray: '#F3F4F6'
+                            gray: '#EFEFEF'
                         }
                     },
                     fontFamily: {
@@ -40,100 +40,120 @@
     <style>
         .nav-link { position: relative; cursor: pointer; }
         .nav-link::after {
-            content: ''; position: absolute; width: 0; height: 3px;
-            bottom: -4px; left: 0; background-color: #FFD200;
-            transition: width 0.3s ease;
+            content: ''; position: absolute; width: 0; height: 4px;
+            bottom: -6px; left: 0; background-color: #FFD200;
+            transition: width 0.25s ease;
         }
         .nav-link:hover::after, .nav-link.active-nav::after { width: 100%; }
         
         .view-section { display: none; }
         .view-section.active { display: block; }
+
+        .slash-divider {
+            background: repeating-linear-gradient(
+                -45deg,
+                #0A0A0D,
+                #0A0A0D 12px,
+                #E21833 12px,
+                #E21833 24px
+            );
+        }
     </style>
 </head>
 <body class="bg-umd-gray font-inter text-umd-black overflow-x-hidden flex flex-col min-h-screen">
 
+    <!-- TOP ATHLETIC HEADER BAR -->
+    <div class="bg-umd-black text-umd-white text-[11px] font-extrabold uppercase tracking-[0.2em] py-1.5 px-6 md:px-8 flex justify-between items-center border-b-2 border-umd-red">
+        <span>University of Maryland Collegiate Club Rowing</span>
+        <span class="hidden sm:inline text-umd-gold">Bladensburg Waterfront Park &bull; Est. 1999</span>
+    </div>
+
     <!-- NAVIGATION BAR -->
-    <nav class="bg-umd-red text-umd-white py-3 px-6 md:px-8 flex justify-between items-center sticky top-0 z-50 shadow-xl border-b-4 border-umd-gold">
-        <button type="button" onclick="switchView('home')" class="flex items-center gap-3 cursor-pointer text-left focus:outline-none">
-            <img src="Logo_M_3.png" onerror="this.src='https://placehold.co/60x60/0F0F12/FFD200?text=M'" alt="Maryland Men's Crew Logo" class="w-12 h-11 object-contain">
-            <span class="font-bebas text-4xl tracking-wider m-0">MD CREW</span>
+    <nav class="bg-umd-red text-umd-white py-3.5 px-6 md:px-8 flex justify-between items-center sticky top-0 z-50 shadow-2xl border-b-4 border-umd-black">
+        <button type="button" onclick="switchView('home')" class="flex items-center gap-3.5 cursor-pointer text-left focus:outline-none group">
+            <img src="Logo_M_3.png" onerror="this.src='https://placehold.co/60x60/0A0A0D/FFD200?text=M'" alt="Maryland Men's Crew Logo" class="w-12 h-11 object-contain transition-transform duration-200 group-hover:scale-105">
+            <div class="leading-none">
+                <span class="font-bebas text-4xl tracking-wider block">MARYLAND CREW</span>
+            </div>
         </button>
 
         <!-- Desktop Links -->
-        <div class="hidden lg:flex gap-7 items-center font-bold tracking-wide uppercase text-sm">
+        <div class="hidden lg:flex gap-8 items-center font-extrabold tracking-wider uppercase text-sm">
             <button type="button" data-nav="home" class="nav-link active-nav uppercase" onclick="switchView('home')">Home</button>
             <button type="button" data-nav="roster" class="nav-link uppercase" onclick="switchView('roster')">Roster</button>
             <button type="button" data-nav="schedule" class="nav-link uppercase" onclick="switchView('schedule')">Schedule</button>
             <button type="button" data-nav="board" class="nav-link uppercase" onclick="switchView('board')">Board &amp; Staff</button>
             <button type="button" data-nav="recruiting" class="nav-link uppercase" onclick="switchView('recruiting')">Recruiting</button>
             <button type="button" data-nav="faq" class="nav-link uppercase" onclick="switchView('faq')">FAQ</button>
-            <button type="button" data-nav="donate" class="nav-link uppercase" onclick="switchView('donate')">Donate</button>
-            <button type="button" data-nav="store" onclick="switchView('store')" class="border-2 border-umd-white py-2 px-4 hover:bg-umd-white hover:text-umd-red transition duration-300 uppercase cursor-pointer">Team Store</button>
+            <button type="button" data-nav="donate" onclick="switchView('donate')" class="bg-umd-black text-umd-gold border-2 border-umd-black py-2 px-5 hover:bg-umd-gold hover:text-umd-black transition duration-200 uppercase cursor-pointer">Donate</button>
         </div>
 
         <!-- Mobile Menu Button -->
-        <button type="button" onclick="toggleMobileMenu()" class="lg:hidden text-umd-white text-2xl p-2 border-2 border-umd-white hover:bg-umd-black transition" aria-label="Toggle Menu">
+        <button type="button" onclick="toggleMobileMenu()" class="lg:hidden text-umd-white text-2xl p-2 border-2 border-umd-black bg-umd-black hover:bg-umd-gold hover:text-umd-black transition" aria-label="Toggle Menu">
             <i class="fa-solid fa-bars"></i>
         </button>
     </nav>
 
     <!-- MOBILE DRAWER MENU -->
-    <div id="mobile-menu" class="hidden lg:hidden bg-umd-black text-umd-white border-b-4 border-umd-gold px-6 py-4 space-y-3 font-bebas text-2xl tracking-wider">
+    <div id="mobile-menu" class="hidden lg:hidden bg-umd-black text-umd-white border-b-4 border-umd-red px-6 py-4 space-y-3 font-bebas text-2xl tracking-wider">
         <button type="button" onclick="switchView('home'); toggleMobileMenu()" class="block w-full text-left py-1 hover:text-umd-gold">Home</button>
         <button type="button" onclick="switchView('roster'); toggleMobileMenu()" class="block w-full text-left py-1 hover:text-umd-gold">Roster</button>
         <button type="button" onclick="switchView('schedule'); toggleMobileMenu()" class="block w-full text-left py-1 hover:text-umd-gold">Schedule</button>
         <button type="button" onclick="switchView('board'); toggleMobileMenu()" class="block w-full text-left py-1 hover:text-umd-gold">Board &amp; Staff</button>
         <button type="button" onclick="switchView('recruiting'); toggleMobileMenu()" class="block w-full text-left py-1 hover:text-umd-gold">Recruiting</button>
         <button type="button" onclick="switchView('faq'); toggleMobileMenu()" class="block w-full text-left py-1 hover:text-umd-gold">FAQ</button>
-        <button type="button" onclick="switchView('donate'); toggleMobileMenu()" class="block w-full text-left py-1 hover:text-umd-gold">Donate</button>
-        <button type="button" onclick="switchView('store'); toggleMobileMenu()" class="block w-full text-left py-1 text-umd-gold">Team Store</button>
+        <button type="button" onclick="switchView('donate'); toggleMobileMenu()" class="block w-full text-left py-1 text-umd-gold">Donate</button>
     </div>
 
     <main class="flex-grow">
 
         <!-- ==================== HOME VIEW ==================== -->
         <section id="home" class="view-section active w-full">
-            <!-- Hero Section -->
-            <div class="relative min-h-[600px] w-full bg-umd-black border-b-8 border-umd-black overflow-hidden flex items-center justify-center py-20">
-                <img src="main_rowing.jpg" onerror="this.src='https://placehold.co/1600x900/0F0F12/FFFFFF?text=Maryland+Mens+Crew'" alt="Maryland Men's Crew" class="absolute inset-0 w-full h-full object-cover opacity-45">
+            <!-- Aggressive Hero Section -->
+            <div class="relative min-h-[640px] w-full bg-umd-black border-b-8 border-umd-black overflow-hidden flex items-center justify-center py-20">
+                <img src="main_rowing.jpg" onerror="this.src='https://placehold.co/1600x900/0A0A0D/FFFFFF?text=Maryland+Mens+Crew'" alt="Maryland Men's Crew" class="absolute inset-0 w-full h-full object-cover opacity-40 grayscale contrast-125">
+                <div class="absolute inset-0 bg-gradient-to-t from-umd-black via-umd-black/50 to-umd-black/70"></div>
                 <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
-                    <img src="Logo_M_3.png" onerror="this.src='https://placehold.co/140x120/0F0F12/FFD200?text=M'" alt="Maryland Crew Logo" class="w-32 h-28 object-contain mx-auto mb-4">
-                    <div class="inline-block bg-umd-red text-umd-white font-bold uppercase tracking-widest text-xs px-4 py-1.5 border-2 border-umd-white mb-6">
-                        Est. 1999 &bull; College Park, Maryland
+                    <img src="Logo_M_3.png" onerror="this.src='https://placehold.co/140x120/0A0A0D/FFD200?text=M'" alt="Maryland Crew Logo" class="w-36 h-32 object-contain mx-auto mb-5 drop-shadow-[0_6px_12px_rgba(0,0,0,0.9)]">
+                    <div class="inline-block bg-umd-red text-umd-white font-black uppercase tracking-[0.2em] text-xs px-5 py-1.5 border-2 border-umd-white mb-6 shadow-[4px_4px_0px_0px_#FFD200]">
+                        College Park, Maryland &bull; Est. 1999
                     </div>
-                    <h1 class="font-bebas text-7xl sm:text-8xl md:text-9xl text-umd-white tracking-tight drop-shadow-2xl mb-4 leading-none">
+                    <h1 class="font-bebas text-7xl sm:text-8xl md:text-[110px] text-umd-white tracking-tight drop-shadow-2xl mb-4 leading-[0.9]">
                         MARYLAND<br><span class="text-umd-red">MEN'S CREW</span>
                     </h1>
-                    <p class="text-umd-white font-bold tracking-widest uppercase mb-10 text-sm md:text-base">
-                        University of Maryland Collegiate Club Rowing
+                    <p class="text-gray-200 font-extrabold tracking-[0.2em] uppercase mb-10 text-xs sm:text-sm md:text-base">
+                        Relentless Speed &bull; Anacostia River &bull; Collegiate Racing
                     </p>
-                    <div class="flex flex-wrap justify-center gap-4">
-                        <button type="button" onclick="switchView('recruiting')" class="bg-umd-gold text-umd-black font-bebas text-3xl px-10 py-4 border-4 border-umd-black hover:bg-umd-white transition duration-300 transform hover:-translate-y-1 shadow-[6px_6px_0px_0px_#E21833] cursor-pointer">
+                    <div class="flex flex-wrap justify-center gap-5">
+                        <button type="button" onclick="switchView('recruiting')" class="bg-umd-gold text-umd-black font-bebas text-3xl px-11 py-4 border-4 border-umd-black hover:bg-umd-white transition duration-200 transform hover:-translate-y-1 shadow-[8px_8px_0px_0px_#E21833] cursor-pointer tracking-wider">
                             JOIN THE TEAM
                         </button>
-                        <button type="button" onclick="switchView('schedule')" class="bg-umd-black text-umd-white font-bebas text-3xl px-10 py-4 border-4 border-umd-white hover:bg-umd-red transition duration-300 transform hover:-translate-y-1 cursor-pointer">
+                        <button type="button" onclick="switchView('schedule')" class="bg-umd-black text-umd-white font-bebas text-3xl px-11 py-4 border-4 border-umd-white hover:bg-umd-red hover:border-umd-red transition duration-200 transform hover:-translate-y-1 shadow-[8px_8px_0px_0px_#FFD200] cursor-pointer tracking-wider">
                             SPRING 2027 SCHEDULE
                         </button>
                     </div>
                 </div>
             </div>
 
+            <!-- Racing Stripe Divider -->
+            <div class="h-4 w-full slash-divider border-b-4 border-umd-black"></div>
+
             <!-- Alternating Editorial Sections -->
-            <div class="max-w-7xl mx-auto px-4 py-16 space-y-24">
+            <div class="max-w-7xl mx-auto px-4 py-20 space-y-28">
                 
                 <!-- Join the Team -->
                 <div class="flex flex-col md:flex-row items-center gap-12 group">
                     <div class="w-full md:w-1/2 relative">
                         <div class="absolute inset-0 bg-umd-black translate-x-4 translate-y-4 border-4 border-umd-black"></div>
-                        <img src="home.jpg" onerror="this.src='main_rowing.jpg'" alt="Join the Team" class="relative z-10 w-full h-[380px] object-cover border-4 border-umd-black transition duration-500">
+                        <img src="home.jpg" onerror="this.src='main_rowing.jpg'" alt="Join the Team" class="relative z-10 w-full h-[390px] object-cover border-4 border-umd-black grayscale group-hover:grayscale-0 transition duration-500">
                     </div>
                     <div class="w-full md:w-1/2">
-                        <span class="bg-umd-red text-umd-white font-bold text-xs uppercase tracking-widest px-3 py-1">Recruitment</span>
-                        <h2 class="font-bebas text-6xl mt-3 mb-4 text-umd-black uppercase">Join the Team</h2>
-                        <p class="text-lg mb-6 border-l-4 border-umd-red pl-4 text-gray-700 font-medium">
+                        <span class="bg-umd-red text-umd-white font-black text-xs uppercase tracking-widest px-3.5 py-1.5 border-2 border-umd-black">Recruitment</span>
+                        <h2 class="font-bebas text-6xl md:text-7xl mt-3 mb-4 text-umd-black uppercase leading-none">Join the Team</h2>
+                        <p class="text-lg mb-7 border-l-8 border-umd-red pl-5 text-gray-800 font-semibold">
                             No prior rowing experience is required. Whether you're an experienced oarsman, coxswain, or brand-new athlete looking to compete at a collegiate level, we'll teach you the fundamentals and get you on the water.
                         </p>
-                        <button type="button" onclick="switchView('recruiting')" class="bg-umd-black text-umd-white font-bebas text-2xl px-8 py-3 border-4 border-umd-black hover:bg-umd-red transition duration-300 cursor-pointer">
+                        <button type="button" onclick="switchView('recruiting')" class="bg-umd-black text-umd-white font-bebas text-2xl px-8 py-3.5 border-4 border-umd-black hover:bg-umd-red transition duration-200 shadow-[6px_6px_0px_0px_#E21833] cursor-pointer tracking-wider">
                             FILL OUT INTEREST FORM &rarr;
                         </button>
                     </div>
@@ -143,15 +163,15 @@
                 <div class="flex flex-col md:flex-row-reverse items-center gap-12 group">
                     <div class="w-full md:w-1/2 relative">
                         <div class="absolute inset-0 bg-umd-red translate-x-4 translate-y-4 border-4 border-umd-black"></div>
-                        <img src="morning_row.jpg" onerror="this.src='https://placehold.co/800x600/0F0F12/FFFFFF?text=Bladensburg+Waterfront+Park'" alt="Early Morning Row" class="relative z-10 w-full h-[380px] object-cover border-4 border-umd-black transition duration-500">
+                        <img src="morning_row.jpg" onerror="this.src='https://placehold.co/800x600/0A0A0D/FFFFFF?text=Bladensburg+Waterfront+Park'" alt="Early Morning Row" class="relative z-10 w-full h-[390px] object-cover border-4 border-umd-black grayscale group-hover:grayscale-0 transition duration-500">
                     </div>
                     <div class="w-full md:w-1/2 md:text-right">
-                        <span class="bg-umd-black text-umd-gold font-bold text-xs uppercase tracking-widest px-3 py-1">On The Water</span>
-                        <h2 class="font-bebas text-6xl mt-3 mb-4 text-umd-black uppercase">Where We Row</h2>
-                        <p class="text-lg mb-6 border-l-4 md:border-l-0 md:border-r-4 border-umd-red pl-4 md:pl-0 md:pr-4 text-gray-700 font-medium">
+                        <span class="bg-umd-black text-umd-gold font-black text-xs uppercase tracking-widest px-3.5 py-1.5 border-2 border-umd-black">On The Water</span>
+                        <h2 class="font-bebas text-6xl md:text-7xl mt-3 mb-4 text-umd-black uppercase leading-none">Where We Row</h2>
+                        <p class="text-lg mb-7 border-l-8 md:border-l-0 md:border-r-8 border-umd-red pl-5 md:pl-0 md:pr-5 text-gray-800 font-semibold">
                             We row out of Bladensburg Waterfront Park, located on the Anacostia River in Bladensburg, Maryland. The park is around a 15-minute drive from campus.
                         </p>
-                        <button type="button" onclick="switchView('faq')" class="bg-umd-white text-umd-black font-bebas text-2xl px-8 py-3 border-4 border-umd-black hover:bg-umd-gold transition duration-300 cursor-pointer">
+                        <button type="button" onclick="switchView('faq')" class="bg-umd-white text-umd-black font-bebas text-2xl px-8 py-3.5 border-4 border-umd-black hover:bg-umd-gold transition duration-200 shadow-[6px_6px_0px_0px_#0A0A0D] cursor-pointer tracking-wider">
                             TEAM FAQ &rarr;
                         </button>
                     </div>
@@ -161,15 +181,15 @@
                 <div class="flex flex-col md:flex-row items-center gap-12 group">
                     <div class="w-full md:w-1/2 relative">
                         <div class="absolute inset-0 bg-umd-gold translate-x-4 translate-y-4 border-4 border-umd-black"></div>
-                        <img src="erg_room.jpg" onerror="this.src='https://placehold.co/800x600/0F0F12/FFFFFF?text=Cole+Field+House+Erg+Room'" alt="Cole Field House Erg Room" class="relative z-10 w-full h-[380px] object-cover border-4 border-umd-black transition duration-500">
+                        <img src="erg_room.jpg" onerror="this.src='https://placehold.co/800x600/0A0A0D/FFFFFF?text=Cole+Field+House+Erg+Room'" alt="Cole Field House Erg Room" class="relative z-10 w-full h-[390px] object-cover border-4 border-umd-black grayscale group-hover:grayscale-0 transition duration-500">
                     </div>
                     <div class="w-full md:w-1/2">
-                        <span class="bg-umd-gold text-umd-black font-bold text-xs uppercase tracking-widest px-3 py-1 border border-umd-black">Winter &amp; Land Training</span>
-                        <h2 class="font-bebas text-6xl mt-3 mb-4 text-umd-black uppercase">Indoor Training Facility</h2>
-                        <p class="text-lg mb-6 border-l-4 border-umd-gold pl-4 text-gray-700 font-medium">
+                        <span class="bg-umd-gold text-umd-black font-black text-xs uppercase tracking-widest px-3.5 py-1.5 border-2 border-umd-black">Winter &amp; Land Training</span>
+                        <h2 class="font-bebas text-6xl md:text-7xl mt-3 mb-4 text-umd-black uppercase leading-none">Indoor Training Facility</h2>
+                        <p class="text-lg mb-7 border-l-8 border-umd-gold pl-5 text-gray-800 font-semibold">
                             When we can't go out on the water, we train at the team's Erg Room in Cole Field House. Training on the erg allows us to put in work off the water and stay in shape during the winter months.
                         </p>
-                        <button type="button" onclick="switchView('roster')" class="bg-umd-black text-umd-white font-bebas text-2xl px-8 py-3 border-4 border-umd-black hover:bg-umd-red transition duration-300 cursor-pointer">
+                        <button type="button" onclick="switchView('roster')" class="bg-umd-black text-umd-white font-bebas text-2xl px-8 py-3.5 border-4 border-umd-black hover:bg-umd-red transition duration-200 shadow-[6px_6px_0px_0px_#FFD200] cursor-pointer tracking-wider">
                             MEET THE ROSTER &rarr;
                         </button>
                     </div>
@@ -179,15 +199,15 @@
                 <div class="flex flex-col md:flex-row-reverse items-center gap-12 group">
                     <div class="w-full md:w-1/2 relative">
                         <div class="absolute inset-0 bg-umd-black translate-x-4 translate-y-4 border-4 border-umd-black"></div>
-                        <img src="main_rowing.jpg" onerror="this.src='https://placehold.co/800x600/0F0F12/FFFFFF?text=Regattas'" alt="Regatta Racing" class="relative z-10 w-full h-[380px] object-cover border-4 border-umd-black transition duration-500">
+                        <img src="main_rowing.jpg" onerror="this.src='https://placehold.co/800x600/0A0A0D/FFFFFF?text=Regattas'" alt="Regatta Racing" class="relative z-10 w-full h-[390px] object-cover border-4 border-umd-black grayscale group-hover:grayscale-0 transition duration-500">
                     </div>
                     <div class="w-full md:w-1/2 md:text-right">
-                        <span class="bg-umd-red text-umd-white font-bold text-xs uppercase tracking-widest px-3 py-1">Competition</span>
-                        <h2 class="font-bebas text-6xl mt-3 mb-4 text-umd-black uppercase">Regattas &amp; Travel</h2>
-                        <p class="text-lg mb-6 border-l-4 md:border-l-0 md:border-r-4 border-umd-black pl-4 md:pl-0 md:pr-4 text-gray-700 font-medium">
+                        <span class="bg-umd-red text-umd-white font-black text-xs uppercase tracking-widest px-3.5 py-1.5 border-2 border-umd-black">Competition</span>
+                        <h2 class="font-bebas text-6xl md:text-7xl mt-3 mb-4 text-umd-black uppercase leading-none">Regattas &amp; Travel</h2>
+                        <p class="text-lg mb-7 border-l-8 md:border-l-0 md:border-r-8 border-umd-black pl-5 md:pl-0 md:pr-5 text-gray-800 font-semibold">
                             Each season, the team competes at several regattas. They are perfect opportunities for us to show off our hard work and represent the University.
                         </p>
-                        <button type="button" onclick="switchView('schedule')" class="bg-umd-red text-umd-white font-bebas text-2xl px-8 py-3 border-4 border-umd-black hover:bg-umd-black transition duration-300 cursor-pointer">
+                        <button type="button" onclick="switchView('schedule')" class="bg-umd-red text-umd-white font-bebas text-2xl px-8 py-3.5 border-4 border-umd-black hover:bg-umd-black transition duration-200 shadow-[6px_6px_0px_0px_#0A0A0D] cursor-pointer tracking-wider">
                             VIEW SPRING 2027 SCHEDULE &rarr;
                         </button>
                     </div>
@@ -197,15 +217,15 @@
                 <div class="flex flex-col md:flex-row items-center gap-12 group">
                     <div class="w-full md:w-1/2 relative">
                         <div class="absolute inset-0 bg-umd-red translate-x-4 translate-y-4 border-4 border-umd-black"></div>
-                        <img src="fun.jpg" onerror="this.src='https://placehold.co/800x600/0F0F12/FFFFFF?text=Team+Social'" alt="Team Social" class="relative z-10 w-full h-[380px] object-cover border-4 border-umd-black grayscale group-hover:grayscale-0 transition duration-500">
+                        <img src="fun.jpg" onerror="this.src='https://placehold.co/800x600/0A0A0D/FFFFFF?text=Team+Social'" alt="Team Social" class="relative z-10 w-full h-[390px] object-cover border-4 border-umd-black grayscale group-hover:grayscale-0 transition duration-500">
                     </div>
                     <div class="w-full md:w-1/2">
-                        <span class="bg-umd-black text-umd-white font-bold text-xs uppercase tracking-widest px-3 py-1">Team Culture</span>
-                        <h2 class="font-bebas text-6xl mt-3 mb-4 text-umd-black uppercase">Social</h2>
-                        <p class="text-lg mb-6 border-l-4 border-umd-red pl-4 text-gray-700 font-medium">
+                        <span class="bg-umd-black text-umd-white font-black text-xs uppercase tracking-widest px-3.5 py-1.5 border-2 border-umd-black">Team Culture</span>
+                        <h2 class="font-bebas text-6xl md:text-7xl mt-3 mb-4 text-umd-black uppercase leading-none">Social</h2>
+                        <p class="text-lg mb-7 border-l-8 border-umd-red pl-5 text-gray-800 font-semibold">
                             When we are not training or competing, we spend plenty of time together as a team. In addition to hanging out around campus, we host social events with other clubs, and a formal at the end of the year.
                         </p>
-                        <button type="button" onclick="switchView('board')" class="bg-umd-black text-umd-white font-bebas text-2xl px-8 py-3 border-4 border-umd-black hover:bg-umd-red transition duration-300 cursor-pointer">
+                        <button type="button" onclick="switchView('board')" class="bg-umd-black text-umd-white font-bebas text-2xl px-8 py-3.5 border-4 border-umd-black hover:bg-umd-red transition duration-200 shadow-[6px_6px_0px_0px_#E21833] cursor-pointer tracking-wider">
                             2027 BOARD &amp; STAFF &rarr;
                         </button>
                     </div>
@@ -218,11 +238,11 @@
         <section id="schedule" class="view-section w-full max-w-7xl mx-auto px-4 py-16">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 border-b-8 border-umd-black pb-4 gap-4">
                 <div>
-                    <p class="font-bold text-umd-red uppercase tracking-widest text-sm mb-1">2026–2027 Racing Calendar</p>
+                    <p class="font-black text-umd-red uppercase tracking-widest text-sm mb-1">2026–2027 Racing Calendar</p>
                     <h2 class="font-bebas text-7xl md:text-8xl tracking-tight m-0 text-umd-black leading-none">SCHEDULE</h2>
                 </div>
                 <div class="flex gap-3">
-                    <button type="button" id="btn-spring" onclick="filterSchedule('spring')" class="bg-umd-red text-umd-white font-bebas text-3xl px-6 py-2 border-4 border-umd-black cursor-pointer">SPRING 2027</button>
+                    <button type="button" id="btn-spring" onclick="filterSchedule('spring')" class="bg-umd-red text-umd-white font-bebas text-3xl px-6 py-2 border-4 border-umd-black shadow-[4px_4px_0px_0px_#0A0A0D] cursor-pointer">SPRING 2027</button>
                     <button type="button" id="btn-fall" onclick="filterSchedule('fall')" class="bg-umd-white text-umd-black font-bebas text-3xl px-6 py-2 border-4 border-umd-black hover:bg-umd-gold transition cursor-pointer">FALL 2026</button>
                 </div>
             </div>
@@ -230,7 +250,7 @@
             <!-- SPRING 2027 SCHEDULE LIST -->
             <div id="schedule-spring" class="flex flex-col gap-6">
                 <!-- Spring Event 1 -->
-                <div class="bg-umd-white border-4 border-umd-black p-6 relative overflow-hidden group">
+                <div class="bg-umd-white border-4 border-umd-black p-6 relative overflow-hidden shadow-[6px_6px_0px_0px_#0A0A0D]">
                     <div class="absolute left-0 top-0 bottom-0 w-4 bg-umd-gold"></div>
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="pl-6 flex flex-col items-center md:items-start text-center md:text-left mb-4 md:mb-0 w-full md:w-1/4">
@@ -242,7 +262,7 @@
                             <p class="font-bold text-gray-700 uppercase tracking-wide flex items-center gap-2"><i class="fa-solid fa-location-dot text-umd-red"></i> Sandy Run Regional Park &bull; Occoquan, VA</p>
                         </div>
                         <div class="w-full md:w-1/4 flex justify-center md:justify-end mt-4 md:mt-0">
-                            <button type="button" onclick="toggleRegattaDetails('sp-1')" class="border-4 border-umd-black font-bebas text-2xl px-6 py-2 hover:bg-umd-black hover:text-umd-white transition duration-300 cursor-pointer">DETAILS</button>
+                            <button type="button" onclick="toggleRegattaDetails('sp-1')" class="border-4 border-umd-black font-bebas text-2xl px-6 py-2 hover:bg-umd-black hover:text-umd-white transition duration-200 cursor-pointer">DETAILS</button>
                         </div>
                     </div>
                     <div id="sp-1" class="hidden mt-6 pt-4 pl-6 border-t-2 border-gray-200 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
@@ -253,7 +273,7 @@
                 </div>
 
                 <!-- Spring Event 2 -->
-                <div class="bg-umd-white border-4 border-umd-black p-6 relative overflow-hidden group">
+                <div class="bg-umd-white border-4 border-umd-black p-6 relative overflow-hidden shadow-[6px_6px_0px_0px_#0A0A0D]">
                     <div class="absolute left-0 top-0 bottom-0 w-4 bg-umd-red"></div>
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="pl-6 flex flex-col items-center md:items-start text-center md:text-left mb-4 md:mb-0 w-full md:w-1/4">
@@ -265,7 +285,7 @@
                             <p class="font-bold text-gray-700 uppercase tracking-wide flex items-center gap-2"><i class="fa-solid fa-location-dot text-umd-red"></i> Swift Creek Reservoir &bull; Midlothian, VA</p>
                         </div>
                         <div class="w-full md:w-1/4 flex justify-center md:justify-end mt-4 md:mt-0">
-                            <button type="button" onclick="toggleRegattaDetails('sp-2')" class="border-4 border-umd-black font-bebas text-2xl px-6 py-2 hover:bg-umd-black hover:text-umd-white transition duration-300 cursor-pointer">DETAILS</button>
+                            <button type="button" onclick="toggleRegattaDetails('sp-2')" class="border-4 border-umd-black font-bebas text-2xl px-6 py-2 hover:bg-umd-black hover:text-umd-white transition duration-200 cursor-pointer">DETAILS</button>
                         </div>
                     </div>
                     <div id="sp-2" class="hidden mt-6 pt-4 pl-6 border-t-2 border-gray-200 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
@@ -276,7 +296,7 @@
                 </div>
 
                 <!-- Spring Event 3 -->
-                <div class="bg-umd-white border-4 border-umd-black p-6 relative overflow-hidden group">
+                <div class="bg-umd-white border-4 border-umd-black p-6 relative overflow-hidden shadow-[6px_6px_0px_0px_#0A0A0D]">
                     <div class="absolute left-0 top-0 bottom-0 w-4 bg-umd-black"></div>
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="pl-6 flex flex-col items-center md:items-start text-center md:text-left mb-4 md:mb-0 w-full md:w-1/4">
@@ -288,7 +308,7 @@
                             <p class="font-bold text-gray-700 uppercase tracking-wide flex items-center gap-2"><i class="fa-solid fa-location-dot text-umd-red"></i> Cooper River &bull; Cherry Hill, NJ</p>
                         </div>
                         <div class="w-full md:w-1/4 flex justify-center md:justify-end mt-4 md:mt-0">
-                            <button type="button" onclick="toggleRegattaDetails('sp-3')" class="border-4 border-umd-black font-bebas text-2xl px-6 py-2 hover:bg-umd-black hover:text-umd-white transition duration-300 cursor-pointer">DETAILS</button>
+                            <button type="button" onclick="toggleRegattaDetails('sp-3')" class="border-4 border-umd-black font-bebas text-2xl px-6 py-2 hover:bg-umd-black hover:text-umd-white transition duration-200 cursor-pointer">DETAILS</button>
                         </div>
                     </div>
                     <div id="sp-3" class="hidden mt-6 pt-4 pl-6 border-t-2 border-gray-200 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
@@ -299,7 +319,7 @@
                 </div>
 
                 <!-- Spring Event 4 -->
-                <div class="bg-umd-white border-4 border-umd-black p-6 relative overflow-hidden group">
+                <div class="bg-umd-white border-4 border-umd-black p-6 relative overflow-hidden shadow-[6px_6px_0px_0px_#0A0A0D]">
                     <div class="absolute left-0 top-0 bottom-0 w-4 bg-umd-red"></div>
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="pl-6 flex flex-col items-center md:items-start text-center md:text-left mb-4 md:mb-0 w-full md:w-1/4">
@@ -311,7 +331,7 @@
                             <p class="font-bold text-gray-700 uppercase tracking-wide flex items-center gap-2"><i class="fa-solid fa-location-dot text-umd-red"></i> Cooper River &bull; Cherry Hill, NJ</p>
                         </div>
                         <div class="w-full md:w-1/4 flex justify-center md:justify-end mt-4 md:mt-0">
-                            <button type="button" onclick="toggleRegattaDetails('sp-4')" class="border-4 border-umd-black font-bebas text-2xl px-6 py-2 hover:bg-umd-black hover:text-umd-white transition duration-300 cursor-pointer">DETAILS</button>
+                            <button type="button" onclick="toggleRegattaDetails('sp-4')" class="border-4 border-umd-black font-bebas text-2xl px-6 py-2 hover:bg-umd-black hover:text-umd-white transition duration-200 cursor-pointer">DETAILS</button>
                         </div>
                     </div>
                     <div id="sp-4" class="hidden mt-6 pt-4 pl-6 border-t-2 border-gray-200 grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
@@ -324,7 +344,7 @@
 
             <!-- FALL 2026 SCHEDULE LIST (Hidden by default) -->
             <div id="schedule-fall" class="hidden flex-col gap-6">
-                <div class="bg-umd-white border-4 border-umd-black p-6 relative overflow-hidden">
+                <div class="bg-umd-white border-4 border-umd-black p-6 relative overflow-hidden shadow-[6px_6px_0px_0px_#0A0A0D]">
                     <div class="absolute left-0 top-0 bottom-0 w-4 bg-umd-red"></div>
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="pl-6 flex flex-col items-center md:items-start text-center md:text-left mb-4 md:mb-0 w-full md:w-1/4">
@@ -341,7 +361,7 @@
                     </div>
                 </div>
 
-                <div class="bg-umd-white border-4 border-umd-black p-6 relative overflow-hidden">
+                <div class="bg-umd-white border-4 border-umd-black p-6 relative overflow-hidden shadow-[6px_6px_0px_0px_#0A0A0D]">
                     <div class="absolute left-0 top-0 bottom-0 w-4 bg-umd-black"></div>
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="pl-6 flex flex-col items-center md:items-start text-center md:text-left mb-4 md:mb-0 w-full md:w-1/4">
@@ -358,7 +378,7 @@
                     </div>
                 </div>
 
-                <div class="bg-umd-white border-4 border-umd-black p-6 relative overflow-hidden">
+                <div class="bg-umd-white border-4 border-umd-black p-6 relative overflow-hidden shadow-[6px_6px_0px_0px_#0A0A0D]">
                     <div class="absolute left-0 top-0 bottom-0 w-4 bg-umd-gold"></div>
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="pl-6 flex flex-col items-center md:items-start text-center md:text-left mb-4 md:mb-0 w-full md:w-1/4">
@@ -375,7 +395,7 @@
                     </div>
                 </div>
 
-                <div class="bg-umd-white border-4 border-umd-black p-6 relative overflow-hidden">
+                <div class="bg-umd-white border-4 border-umd-black p-6 relative overflow-hidden shadow-[6px_6px_0px_0px_#0A0A0D]">
                     <div class="absolute left-0 top-0 bottom-0 w-4 bg-umd-black"></div>
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="pl-6 flex flex-col items-center md:items-start text-center md:text-left mb-4 md:mb-0 w-full md:w-1/4">
@@ -398,55 +418,55 @@
         <section id="board" class="view-section w-full max-w-7xl mx-auto px-4 py-16">
             <div class="flex justify-between items-end mb-12 border-b-8 border-umd-black pb-4">
                 <div>
-                    <p class="font-bold text-umd-red uppercase tracking-widest text-sm mb-1">2027 Leadership</p>
+                    <p class="font-black text-umd-red uppercase tracking-widest text-sm mb-1">2027 Leadership</p>
                     <h2 class="font-bebas text-7xl md:text-8xl tracking-tight m-0 text-umd-black leading-none">BOARD &amp; STAFF</h2>
                 </div>
-                <div class="bg-umd-red text-umd-white font-bebas text-4xl px-6 py-2 border-4 border-umd-black">2027 TERM</div>
+                <div class="bg-umd-red text-umd-white font-bebas text-4xl px-6 py-2 border-4 border-umd-black shadow-[4px_4px_0px_0px_#0A0A0D]">2027 TERM</div>
             </div>
 
             <!-- PART 1: EXECUTIVE BOARD -->
             <h3 class="font-bebas text-5xl mb-8 text-umd-black border-b-4 border-umd-red pb-2 inline-block">Executive Board</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- President -->
-                <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#E21833]">
+                <div class="bg-umd-white overflow-hidden border-4 border-umd-black flex flex-col group shadow-[8px_8px_0px_0px_#E21833]">
                     <div class="relative bg-umd-black h-[360px]">
-                        <img src="Hemin.jpg" onerror="this.src='https://placehold.co/400x500/0F0F12/FFFFFF?text=Hemin+Khalid'" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition duration-500" alt="Hemin Khalid">
+                        <img src="Hemin.jpg" onerror="this.src='https://placehold.co/400x500/0A0A0D/FFFFFF?text=Hemin+Khalid'" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" alt="Hemin Khalid">
                     </div>
-                    <div class="p-5 text-center bg-umd-white">
-                        <p class="font-bold text-umd-red uppercase tracking-widest text-xs mb-1">President</p>
+                    <div class="p-5 text-center bg-umd-white border-t-4 border-umd-black">
+                        <p class="font-black text-umd-red uppercase tracking-widest text-xs mb-1">President</p>
                         <h4 class="font-bebas text-4xl uppercase">Hemin Khalid</h4>
                     </div>
                 </div>
 
                 <!-- Vice President -->
-                <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#E21833]">
+                <div class="bg-umd-white overflow-hidden border-4 border-umd-black flex flex-col group shadow-[8px_8px_0px_0px_#E21833]">
                     <div class="relative bg-umd-black h-[360px]">
-                        <img src="Max_Gram.jpg" onerror="this.src='https://placehold.co/400x500/0F0F12/FFFFFF?text=Max+Gramling'" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition duration-500" alt="Max Gramling">
+                        <img src="Max_Gram.jpg" onerror="this.src='https://placehold.co/400x500/0A0A0D/FFFFFF?text=Max+Gramling'" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" alt="Max Gramling">
                     </div>
-                    <div class="p-5 text-center bg-umd-white">
-                        <p class="font-bold text-umd-red uppercase tracking-widest text-xs mb-1">Vice President</p>
+                    <div class="p-5 text-center bg-umd-white border-t-4 border-umd-black">
+                        <p class="font-black text-umd-red uppercase tracking-widest text-xs mb-1">Vice President</p>
                         <h4 class="font-bebas text-4xl uppercase">Max Gramling</h4>
                     </div>
                 </div>
 
                 <!-- Equipment Manager -->
-                <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#FFD200]">
+                <div class="bg-umd-white overflow-hidden border-4 border-umd-black flex flex-col group shadow-[8px_8px_0px_0px_#FFD200]">
                     <div class="relative bg-umd-black h-[360px]">
-                        <img src="clint.jpg" onerror="this.src='https://placehold.co/400x500/0F0F12/FFFFFF?text=Clint+Hensley'" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition duration-500" alt="Clint Hensley">
+                        <img src="clint.jpg" onerror="this.src='https://placehold.co/400x500/0A0A0D/FFFFFF?text=Clint+Hensley'" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" alt="Clint Hensley">
                     </div>
-                    <div class="p-5 text-center bg-umd-white">
-                        <p class="font-bold text-umd-red uppercase tracking-widest text-xs mb-1">Equipment Manager</p>
+                    <div class="p-5 text-center bg-umd-white border-t-4 border-umd-black">
+                        <p class="font-black text-umd-red uppercase tracking-widest text-xs mb-1">Equipment Manager</p>
                         <h4 class="font-bebas text-4xl uppercase">Clint Hensley</h4>
                     </div>
                 </div>
 
                 <!-- Treasurer -->
-                <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#E21833]">
+                <div class="bg-umd-white overflow-hidden border-4 border-umd-black flex flex-col group shadow-[8px_8px_0px_0px_#E21833]">
                     <div class="relative bg-umd-black h-[360px]">
-                        <img src="Edward.jpg" onerror="this.src='https://placehold.co/400x500/0F0F12/FFFFFF?text=Eddie+Cameron'" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition duration-500" alt="Eddie Cameron">
+                        <img src="Edward.jpg" onerror="this.src='https://placehold.co/400x500/0A0A0D/FFFFFF?text=Eddie+Cameron'" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" alt="Eddie Cameron">
                     </div>
-                    <div class="p-5 text-center bg-umd-white">
-                        <p class="font-bold text-umd-red uppercase tracking-widest text-xs mb-1">Treasurer</p>
+                    <div class="p-5 text-center bg-umd-white border-t-4 border-umd-black">
+                        <p class="font-black text-umd-red uppercase tracking-widest text-xs mb-1">Treasurer</p>
                         <h4 class="font-bebas text-4xl uppercase">Eddie Cameron</h4>
                     </div>
                 </div>
@@ -456,56 +476,56 @@
             <h3 class="font-bebas text-5xl mt-16 mb-8 text-umd-black border-b-4 border-umd-black pb-2 inline-block">General Board</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Fundraising Officer -->
-                <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#0F0F12]">
+                <div class="bg-umd-white overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#0A0A0D]">
                     <div class="relative bg-umd-black h-[360px] flex items-center justify-center">
                         <span class="font-bebas text-6xl text-gray-600">VACANT</span>
                     </div>
-                    <div class="p-5 text-center bg-umd-white">
-                        <p class="font-bold text-gray-500 uppercase tracking-widest text-xs mb-1">Fundraising Officer</p>
+                    <div class="p-5 text-center bg-umd-white border-t-4 border-umd-black">
+                        <p class="font-black text-gray-500 uppercase tracking-widest text-xs mb-1">Fundraising Officer</p>
                         <h4 class="font-bebas text-4xl uppercase text-gray-400">N/A</h4>
                     </div>
                 </div>
 
                 <!-- Public Relations Officer -->
-                <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#0F0F12]">
+                <div class="bg-umd-white overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#0A0A0D]">
                     <div class="relative bg-umd-black h-[360px]">
-                        <img src="Liam_Ke.jpg" onerror="this.src='https://placehold.co/400x500/0F0F12/FFFFFF?text=Liam+Kehoe'" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition duration-500" alt="Liam Kehoe">
+                        <img src="Liam_Ke.jpg" onerror="this.src='https://placehold.co/400x500/0A0A0D/FFFFFF?text=Liam+Kehoe'" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" alt="Liam Kehoe">
                     </div>
-                    <div class="p-5 text-center bg-umd-white">
-                        <p class="font-bold text-umd-black uppercase tracking-widest text-xs mb-1">Public Relations Officer</p>
+                    <div class="p-5 text-center bg-umd-white border-t-4 border-umd-black">
+                        <p class="font-black text-umd-black uppercase tracking-widest text-xs mb-1">Public Relations Officer</p>
                         <h4 class="font-bebas text-4xl uppercase">Liam Kehoe</h4>
                     </div>
                 </div>
 
                 <!-- Social Chair -->
-                <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#0F0F12]">
+                <div class="bg-umd-white overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#0A0A0D]">
                     <div class="relative bg-umd-black h-[360px]">
-                        <img src="max_gies.jpg" onerror="this.src='https://placehold.co/400x500/0F0F12/FFFFFF?text=Maximilian+Gisler'" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition duration-500" alt="Maximilian Gisler">
+                        <img src="max_gies.jpg" onerror="this.src='https://placehold.co/400x500/0A0A0D/FFFFFF?text=Maximilian+Gisler'" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" alt="Maximilian Gisler">
                     </div>
-                    <div class="p-5 text-center bg-umd-white">
-                        <p class="font-bold text-umd-black uppercase tracking-widest text-xs mb-1">Social Chair</p>
+                    <div class="p-5 text-center bg-umd-white border-t-4 border-umd-black">
+                        <p class="font-black text-umd-black uppercase tracking-widest text-xs mb-1">Social Chair</p>
                         <h4 class="font-bebas text-4xl uppercase">Maximilian Gisler</h4>
                     </div>
                 </div>
 
                 <!-- Apparel Officer -->
-                <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#0F0F12]">
+                <div class="bg-umd-white overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#0A0A0D]">
                     <div class="relative bg-umd-black h-[360px]">
-                        <img src="https://placehold.co/400x500/0F0F12/FFFFFF?text=Brady+McLaren" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition duration-500" alt="Brady McLaren">
+                        <img src="https://placehold.co/400x500/0A0A0D/FFFFFF?text=Brady+McLaren" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" alt="Brady McLaren">
                     </div>
-                    <div class="p-5 text-center bg-umd-white">
-                        <p class="font-bold text-umd-black uppercase tracking-widest text-xs mb-1">Apparel Officer</p>
+                    <div class="p-5 text-center bg-umd-white border-t-4 border-umd-black">
+                        <p class="font-black text-umd-black uppercase tracking-widest text-xs mb-1">Apparel Officer</p>
                         <h4 class="font-bebas text-4xl uppercase">Brady McLaren</h4>
                     </div>
                 </div>
 
                 <!-- Alumni Board Liaison -->
-                <div class="bg-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#0F0F12]">
+                <div class="bg-umd-white overflow-hidden border-4 border-umd-black flex flex-col group shadow-[6px_6px_0px_0px_#0A0A0D]">
                     <div class="relative bg-umd-black h-[360px]">
-                        <img src="clint.jpg" onerror="this.src='https://placehold.co/400x500/0F0F12/FFFFFF?text=Clint+Hensley'" class="w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition duration-500" alt="Clint Hensley">
+                        <img src="clint.jpg" onerror="this.src='https://placehold.co/400x500/0A0A0D/FFFFFF?text=Clint+Hensley'" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-500" alt="Clint Hensley">
                     </div>
-                    <div class="p-5 text-center bg-umd-white">
-                        <p class="font-bold text-umd-black uppercase tracking-widest text-xs mb-1">Alumni Board Liaison</p>
+                    <div class="p-5 text-center bg-umd-white border-t-4 border-umd-black">
+                        <p class="font-black text-umd-black uppercase tracking-widest text-xs mb-1">Alumni Board Liaison</p>
                         <h4 class="font-bebas text-4xl uppercase">Clint Hensley</h4>
                     </div>
                 </div>
@@ -514,17 +534,17 @@
             <!-- COACHING STAFF -->
             <h3 class="font-bebas text-5xl mt-16 mb-8 text-umd-black border-b-4 border-umd-black pb-2 inline-block">Coaching Staff</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-umd-black text-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col sm:flex-row items-center shadow-[6px_6px_0px_0px_#E21833]">
-                    <img src="Noah-R.jpg" onerror="this.src='https://placehold.co/400x500/0F0F12/FFFFFF?text=Noah+Ramos'" class="w-full sm:w-48 h-64 sm:h-full object-cover border-b-4 sm:border-b-0 sm:border-r-4 border-umd-red" alt="Noah Ramos">
+                <div class="bg-umd-black text-umd-white overflow-hidden border-4 border-umd-black flex flex-col sm:flex-row items-center shadow-[8px_8px_0px_0px_#E21833] group">
+                    <img src="Noah-R.jpg" onerror="this.src='https://placehold.co/400x500/0A0A0D/FFFFFF?text=Noah+Ramos'" class="w-full sm:w-48 h-64 sm:h-full object-cover border-b-4 sm:border-b-0 sm:border-r-4 border-umd-red grayscale group-hover:grayscale-0 transition duration-500" alt="Noah Ramos">
                     <div class="p-8">
-                        <p class="font-bold text-umd-gold uppercase tracking-widest text-xs mb-2">Varsity Coach</p>
+                        <p class="font-black text-umd-gold uppercase tracking-widest text-xs mb-2">Varsity Coach</p>
                         <h4 class="font-bebas text-5xl uppercase">Noah Ramos</h4>
                     </div>
                 </div>
-                <div class="bg-umd-black text-umd-white rounded-xl overflow-hidden border-4 border-umd-black flex flex-col sm:flex-row items-center shadow-[6px_6px_0px_0px_#FFD200]">
-                    <img src="clint.jpg" onerror="this.src='https://placehold.co/400x500/0F0F12/FFFFFF?text=Clint+Hensley'" class="w-full sm:w-48 h-64 sm:h-full object-cover border-b-4 sm:border-b-0 sm:border-r-4 border-umd-gold" alt="Clint Hensley">
+                <div class="bg-umd-black text-umd-white overflow-hidden border-4 border-umd-black flex flex-col sm:flex-row items-center shadow-[8px_8px_0px_0px_#FFD200] group">
+                    <img src="clint.jpg" onerror="this.src='https://placehold.co/400x500/0A0A0D/FFFFFF?text=Clint+Hensley'" class="w-full sm:w-48 h-64 sm:h-full object-cover border-b-4 sm:border-b-0 sm:border-r-4 border-umd-gold grayscale group-hover:grayscale-0 transition duration-500" alt="Clint Hensley">
                     <div class="p-8">
-                        <p class="font-bold text-umd-gold uppercase tracking-widest text-xs mb-2">Novice Coach</p>
+                        <p class="font-black text-umd-gold uppercase tracking-widest text-xs mb-2">Novice Coach</p>
                         <h4 class="font-bebas text-5xl uppercase">Clint Hensley</h4>
                     </div>
                 </div>
@@ -535,32 +555,32 @@
         <section id="recruiting" class="view-section w-full max-w-7xl mx-auto px-4 py-16">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 border-b-8 border-umd-black pb-4 gap-4">
                 <div>
-                    <p class="font-bold text-umd-red uppercase tracking-widest text-sm mb-1">Walk-Ons &amp; Experienced Athletes</p>
+                    <p class="font-black text-umd-red uppercase tracking-widest text-sm mb-1">Walk-Ons &amp; Experienced Athletes</p>
                     <h2 class="font-bebas text-7xl md:text-8xl tracking-tight m-0 text-umd-black leading-none">RECRUITING</h2>
                 </div>
-                <div class="bg-umd-gold text-umd-black font-bebas text-3xl px-6 py-2 border-4 border-umd-black">NO EXPERIENCE REQUIRED</div>
+                <div class="bg-umd-gold text-umd-black font-bebas text-3xl px-6 py-2 border-4 border-umd-black shadow-[4px_4px_0px_0px_#0A0A0D]">NO EXPERIENCE REQUIRED</div>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 <!-- Left Column: Info Cards -->
                 <div class="lg:col-span-7 space-y-8">
-                    <div class="bg-umd-white border-4 border-umd-black p-8 shadow-[8px_8px_0px_0px_#0F0F12]">
+                    <div class="bg-umd-white border-4 border-umd-black p-8 shadow-[8px_8px_0px_0px_#0A0A0D]">
                         <h3 class="font-bebas text-4xl text-umd-red uppercase mb-3">Why Row at Maryland?</h3>
-                        <p class="text-gray-700 leading-relaxed mb-4 font-medium">
+                        <p class="text-gray-800 leading-relaxed mb-4 font-semibold">
                             Maryland Men's Crew is a competitive collegiate club rowing program at the University of Maryland. Most of our athletes had zero rowing experience prior to college—if you are competitive, coachable, and committed to hard work, you can earn a seat in a racing shell.
                         </p>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t-2 border-gray-200">
                             <div class="flex items-start gap-3">
                                 <i class="fa-solid fa-water text-umd-red text-xl mt-1"></i>
                                 <div>
-                                    <h4 class="font-bold uppercase text-sm">Novice Program</h4>
+                                    <h4 class="font-extrabold uppercase text-sm">Novice Program</h4>
                                     <p class="text-xs text-gray-600">Dedicated coaching to teach technique, boat handling, and racing.</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-3">
                                 <i class="fa-solid fa-bullhorn text-umd-red text-xl mt-1"></i>
                                 <div>
-                                    <h4 class="font-bold uppercase text-sm">Coxswains Needed</h4>
+                                    <h4 class="font-extrabold uppercase text-sm">Coxswains Needed</h4>
                                     <p class="text-xs text-gray-600">Steer the boat, lead the crew, and call race strategy on the water.</p>
                                 </div>
                             </div>
@@ -595,16 +615,16 @@
                         
                         <form id="recruit-form" onsubmit="handleRecruitSubmit(event)" class="space-y-4">
                             <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider mb-1">Full Name *</label>
+                                <label class="block text-xs font-extrabold uppercase tracking-wider mb-1">Full Name *</label>
                                 <input type="text" required placeholder="Testudo Terrapin" class="w-full border-2 border-umd-black p-3 font-medium focus:outline-none focus:border-umd-red">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider mb-1">UMD Email (@terpmail.umd.edu) *</label>
+                                <label class="block text-xs font-extrabold uppercase tracking-wider mb-1">UMD Email (@terpmail.umd.edu) *</label>
                                 <input type="email" required placeholder="testudo@terpmail.umd.edu" class="w-full border-2 border-umd-black p-3 font-medium focus:outline-none focus:border-umd-red">
                             </div>
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider mb-1">Graduation Year</label>
+                                    <label class="block text-xs font-extrabold uppercase tracking-wider mb-1">Graduation Year</label>
                                     <select class="w-full border-2 border-umd-black p-3 font-medium bg-white focus:outline-none focus:border-umd-red">
                                         <option>2030 (Incoming)</option>
                                         <option>2029</option>
@@ -614,7 +634,7 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label class="block text-xs font-bold uppercase tracking-wider mb-1">Role / Experience</label>
+                                    <label class="block text-xs font-extrabold uppercase tracking-wider mb-1">Role / Experience</label>
                                     <select class="w-full border-2 border-umd-black p-3 font-medium bg-white focus:outline-none focus:border-umd-red">
                                         <option>Novice Rower (No Exp)</option>
                                         <option>Novice Coxswain (No Exp)</option>
@@ -624,10 +644,10 @@
                                 </div>
                             </div>
                             <div>
-                                <label class="block text-xs font-bold uppercase tracking-wider mb-1">High School Sports / Rowing Background</label>
+                                <label class="block text-xs font-extrabold uppercase tracking-wider mb-1">High School Sports / Rowing Background</label>
                                 <textarea rows="3" placeholder="Tell us about any sports you played or questions you have..." class="w-full border-2 border-umd-black p-3 font-medium focus:outline-none focus:border-umd-red"></textarea>
                             </div>
-                            <button type="submit" class="w-full bg-umd-red text-umd-white font-bebas text-3xl py-3 border-4 border-umd-black hover:bg-umd-black transition duration-300 cursor-pointer">
+                            <button type="submit" class="w-full bg-umd-red text-umd-white font-bebas text-3xl py-3 border-4 border-umd-black hover:bg-umd-black transition duration-200 cursor-pointer">
                                 SUBMIT INTEREST FORM
                             </button>
                         </form>
@@ -645,579 +665,588 @@
         <section id="faq" class="view-section w-full max-w-5xl mx-auto px-4 py-16">
             <div class="flex justify-between items-end mb-12 border-b-8 border-umd-black pb-4">
                 <div>
-                    <p class="font-bold text-umd-red uppercase tracking-widest text-sm mb-1">Everything You Need to Know</p>
+                    <p class="font-black text-umd-red uppercase tracking-widest text-sm mb-1">Everything You Need to Know</p>
                     <h2 class="font-bebas text-7xl md:text-8xl tracking-tight m-0 text-umd-black leading-none">FAQ</h2>
                 </div>
-                <button type="button" onclick="switchView('recruiting')" class="bg-umd-gold text-umd-black font-bebas text-2xl px-6 py-2 border-4 border-umd-black hover:bg-umd-black hover:text-umd-white transition cursor-pointer">JOIN NOW</button>
+                <button type="button" onclick="switchView('recruiting')" class="bg-umd-gold text-umd-black font-bebas text-2xl px-6 py-2 border-4 border-umd-black hover:bg-umd-black hover:text-umd-white transition shadow-[4px_4px_0px_0px_#0A0A0D] cursor-pointer">JOIN NOW</button>
             </div>
 
             <div class="space-y-4">
                 <!-- FAQ 1 -->
-                <div class="bg-umd-white border-4 border-umd-black">
+                <div class="bg-umd-white border-4 border-umd-black shadow-[4px_4px_0px_0px_#0A0A0D]">
                     <button type="button" onclick="toggleFaq(1)" class="w-full p-6 text-left flex justify-between items-center font-bebas text-3xl tracking-wide hover:bg-umd-gray transition cursor-pointer">
                         <span>DO I NEED PRIOR ROWING EXPERIENCE TO JOIN?</span>
                         <i id="faq-icon-1" class="fa-solid fa-plus text-umd-red"></i>
                     </button>
-                    <div id="faq-body-1" class="px-6 pb-6 text-gray-700 font-medium border-t-2 border-gray-200 pt-4">
+                    <div id="faq-body-1" class="px-6 pb-6 text-gray-800 font-medium border-t-2 border-gray-200 pt-4">
                         Not at all. Most of our athletes started rowing in college. Every fall and spring we welcome novice rowers and coxswains and teach you everything from basic ergometer form to rowing in a racing shell.
                     </div>
                 </div>
 
                 <!-- FAQ 2 -->
-                <div class="bg-umd-white border-4 border-umd-black">
+                <div class="bg-umd-white border-4 border-umd-black shadow-[4px_4px_0px_0px_#0A0A0D]">
                     <button type="button" onclick="toggleFaq(2)" class="w-full p-6 text-left flex justify-between items-center font-bebas text-3xl tracking-wide hover:bg-umd-gray transition cursor-pointer">
                         <span>WHERE DO WE ROW AND TRAIN INDOORS?</span>
                         <i id="faq-icon-2" class="fa-solid fa-plus text-umd-red"></i>
                     </button>
-                    <div id="faq-body-2" class="hidden px-6 pb-6 text-gray-700 font-medium border-t-2 border-gray-200 pt-4">
+                    <div id="faq-body-2" class="hidden px-6 pb-6 text-gray-800 font-medium border-t-2 border-gray-200 pt-4">
                         On-water practices take place out of Bladensburg Waterfront Park on the Anacostia River (about a 15-minute drive from campus). When weather or winter conditions keep us off the water, we train indoors at the team's Erg Room in Cole Field House.
                     </div>
                 </div>
 
                 <!-- FAQ 3 -->
-                <div class="bg-umd-white border-4 border-umd-black">
+                <div class="bg-umd-white border-4 border-umd-black shadow-[4px_4px_0px_0px_#0A0A0D]">
                     <button type="button" onclick="toggleFaq(3)" class="w-full p-6 text-left flex justify-between items-center font-bebas text-3xl tracking-wide hover:bg-umd-gray transition cursor-pointer">
                         <span>WHAT IS THE TIME COMMITMENT &amp; CAN I BALANCE CLASSES?</span>
                         <i id="faq-icon-3" class="fa-solid fa-plus text-umd-red"></i>
                     </button>
-                    <div id="faq-body-3" class="hidden px-6 pb-6 text-gray-700 font-medium border-t-2 border-gray-200 pt-4">
+                    <div id="faq-body-3" class="hidden px-6 pb-6 text-gray-800 font-medium border-t-2 border-gray-200 pt-4">
                         Practices are scheduled around students' academic schedules so athletes can balance coursework, labs, and campus commitments while competing at regattas.
                     </div>
                 </div>
 
                 <!-- FAQ 4 -->
-                <div class="bg-umd-white border-4 border-umd-black">
+                <div class="bg-umd-white border-4 border-umd-black shadow-[4px_4px_0px_0px_#0A0A0D]">
                     <button type="button" onclick="toggleFaq(4)" class="w-full p-6 text-left flex justify-between items-center font-bebas text-3xl tracking-wide hover:bg-umd-gray transition cursor-pointer">
                         <span>WHAT IS A COXSWAIN AND HOW DO I BECOME ONE?</span>
                         <i id="faq-icon-4" class="fa-solid fa-plus text-umd-red"></i>
                     </button>
-                    <div id="faq-body-4" class="hidden px-6 pb-6 text-gray-700 font-medium border-t-2 border-gray-200 pt-4">
+                    <div id="faq-body-4" class="hidden px-6 pb-6 text-gray-800 font-medium border-t-2 border-gray-200 pt-4">
                         The coxswain sits in the boat, steers using the rudder, communicates with the crew and coaches, and directs race strategy. No prior experience is required—we train novice coxswains alongside our coaches.
                     </div>
                 </div>
 
                 <!-- FAQ 5 -->
-                <div class="bg-umd-white border-4 border-umd-black">
+                <div class="bg-umd-white border-4 border-umd-black shadow-[4px_4px_0px_0px_#0A0A0D]">
                     <button type="button" onclick="toggleFaq(5)" class="w-full p-6 text-left flex justify-between items-center font-bebas text-3xl tracking-wide hover:bg-umd-gray transition cursor-pointer">
                         <span>ARE THERE TEAM DUES AND WHAT DO THEY COVER?</span>
                         <i id="faq-icon-5" class="fa-solid fa-plus text-umd-red"></i>
                     </button>
-                    <div id="faq-body-5" class="hidden px-6 pb-6 text-gray-700 font-medium border-t-2 border-gray-200 pt-4">
+                    <div id="faq-body-5" class="hidden px-6 pb-6 text-gray-800 font-medium border-t-2 border-gray-200 pt-4">
                         Semester dues help cover regatta entry fees, boat storage and launch operations at Bladensburg Waterfront Park, equipment maintenance, and away regatta travel.
                     </div>
                 </div>
 
                 <!-- FAQ 6 -->
-                <div class="bg-umd-white border-4 border-umd-black">
+                <div class="bg-umd-white border-4 border-umd-black shadow-[4px_4px_0px_0px_#0A0A0D]">
                     <button type="button" onclick="toggleFaq(6)" class="w-full p-6 text-left flex justify-between items-center font-bebas text-3xl tracking-wide hover:bg-umd-gray transition cursor-pointer">
                         <span>DO I NEED TO KNOW HOW TO SWIM?</span>
                         <i id="faq-icon-6" class="fa-solid fa-plus text-umd-red"></i>
                     </button>
-                    <div id="faq-body-6" class="hidden px-6 pb-6 text-gray-700 font-medium border-t-2 border-gray-200 pt-4">
+                    <div id="faq-body-6" class="hidden px-6 pb-6 text-gray-800 font-medium border-t-2 border-gray-200 pt-4">
                         Yes. Per rowing safety requirements, all athletes must pass a basic swim test before going out on the water.
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ==================== ROSTER VIEW (TERPS HOCKEY LAYOUT) ==================== -->
+        <!-- ==================== ROSTER VIEW (TERPS HOCKEY LAYOUT + B&W HOVER + SENIORITY ORDER) ==================== -->
         <section id="roster" class="view-section w-full max-w-7xl mx-auto px-4 py-16">
-            <div class="bg-umd-white rounded-2xl shadow-xl border-2 border-gray-200 p-6 sm:p-10">
-                <div class="flex justify-between items-center mb-8 pb-4 border-b-2 border-gray-200">
-                    <h2 class="font-bebas text-5xl sm:text-6xl tracking-tight m-0 text-umd-black">ROSTER</h2>
-                    <img src="Logo_M_3.png" onerror="this.src='https://placehold.co/56x48/0F0F12/FFD200?text=M'" alt="Maryland Crew Logo" class="w-12 h-11 object-contain">
+            <div class="bg-umd-white rounded-2xl shadow-2xl border-4 border-umd-black p-6 sm:p-10">
+                <div class="flex justify-between items-center mb-8 pb-4 border-b-4 border-umd-black">
+                    <div>
+                        <p class="font-black text-umd-red uppercase tracking-widest text-xs mb-1">2026–2027 Coaching Staff &amp; Squad</p>
+                        <h2 class="font-bebas text-6xl sm:text-7xl tracking-tight m-0 text-umd-black leading-none">ROSTER</h2>
+                    </div>
+                    <img src="Logo_M_3.png" onerror="this.src='https://placehold.co/56x48/0A0A0D/FFD200?text=M'" alt="Maryland Crew Logo" class="w-14 h-12 object-contain">
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- COACHING STAFF -->
                     <!-- 1 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="clint.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0F0F12?text=Clint+Hensley'" class="w-full h-full object-cover object-top" alt="Clint Hensley">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="clint.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0A0A0D?text=Clint+Hensley'" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Clint Hensley">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">1</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Novice Coach / Equip. Mgr</p>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-umd-red">Novice Coach / Equip. Mgr</p>
                                 <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">CLINT HENSLEY</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Junior</span>
+                                <span class="inline-block bg-umd-black text-umd-white text-[11px] font-bold px-2 py-0.5 rounded uppercase">Junior</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 2 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="Noah-R.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0F0F12?text=Noah+Ramos'" class="w-full h-full object-cover object-top" alt="Noah Ramos">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="Noah-R.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0A0A0D?text=Noah+Ramos'" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Noah Ramos">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">2</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Varsity Coach</p>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-umd-red">Varsity Coach</p>
                                 <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">NOAH RAMOS</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Junior</span>
+                                <span class="inline-block bg-umd-black text-umd-white text-[11px] font-bold px-2 py-0.5 rounded uppercase">Junior</span>
                             </div>
                         </div>
                     </div>
 
+                    <!-- SENIORS -->
                     <!-- 3 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="Hemin.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0F0F12?text=Hemin+Khalid'" class="w-full h-full object-cover object-top" alt="Hemin Khalid">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="Justin_lee.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0A0A0D?text=Justin+Lee'" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Justin Lee">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">3</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">President / Varsity</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">HEMIN KHALID</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">JUSTIN LEE</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Sophomore</span>
+                                <span class="inline-block bg-umd-red text-umd-white text-[11px] font-bold px-2 py-0.5 rounded uppercase">Senior</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 4 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="Edward.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0F0F12?text=Eddie+Cameron'" class="w-full h-full object-cover object-top" alt="Eddie Cameron">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="https://placehold.co/400x500/E5E7EB/0A0A0D?text=Derrick+Jones" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Derrick Jones">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">4</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Treasurer / Varsity</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">EDDIE CAMERON</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">DERRICK JONES</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Sophomore</span>
+                                <span class="inline-block bg-umd-red text-umd-white text-[11px] font-bold px-2 py-0.5 rounded uppercase">Senior</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 5 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="Liam_Ke.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0F0F12?text=Liam+Kehoe'" class="w-full h-full object-cover object-top" alt="Liam Kehoe">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="https://placehold.co/400x500/E5E7EB/0A0A0D?text=William+Fingles" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="William Fingles">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">5</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">PR Officer / Varsity</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">LIAM KEHOE</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">WILLIAM FINGLES</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Sophomore</span>
+                                <span class="inline-block bg-umd-red text-umd-white text-[11px] font-bold px-2 py-0.5 rounded uppercase">Senior</span>
                             </div>
                         </div>
                     </div>
 
+                    <!-- JUNIORS -->
                     <!-- 6 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="max_gies.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0F0F12?text=Maximilian+Gisler'" class="w-full h-full object-cover object-top" alt="Maximilian Gisler">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="max_gies.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0A0A0D?text=Maximilian+Gisler'" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Maximilian Gisler">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">6</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Social Chair / Varsity</p>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Social Chair / Varsity</p>
                                 <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">MAXIMILIAN GISLER</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Junior</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Junior</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 7 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="Anirudh_K.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0F0F12?text=Anirudh+Krishna'" class="w-full h-full object-cover object-top" alt="Anirudh Krishna">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="Peter_bundy.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0A0A0D?text=Peter+Bundy'" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Peter Bundy">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">7</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">ANIRUDH KRISHNA</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">PETER BUNDY</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Sophomore</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Junior</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 8 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="Justin_lee.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0F0F12?text=Justin+Lee'" class="w-full h-full object-cover object-top" alt="Justin Lee">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="Teddy.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0A0A0D?text=Theodore+Profit'" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Theodore Profit">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">8</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">JUSTIN LEE</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">THEODORE PROFIT</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Senior</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Junior</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 9 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="Justin_M.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0F0F12?text=Justin+Mooney'" class="w-full h-full object-cover object-top" alt="Justin Mooney">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="bertram.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0A0A0D?text=Bertram+Bendsen'" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Bertram Bendsen">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">9</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">JUSTIN MOONEY</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">BERTRAM BENDSEN</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Freshman</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Junior</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 10 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="Marios_K.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0F0F12?text=Marios+Kalpakis'" class="w-full h-full object-cover object-top" alt="Marios Kalpakis">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="https://placehold.co/400x500/E5E7EB/0A0A0D?text=Pyotr+Sergeevykh" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Pyotr Sergeevykh">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">10</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">MARIOS KALPAKIS</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">PYOTR SERGEEVYKH</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Sophomore</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Junior</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 11 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="Max_Gram.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0F0F12?text=Max+Gramling'" class="w-full h-full object-cover object-top" alt="Max Gramling">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="https://placehold.co/400x500/E5E7EB/0A0A0D?text=David+Chen" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="David Chen">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">11</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Vice President / Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">MAX GRAMLING</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">DAVID CHEN</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Sophomore</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Junior</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 12 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="Peter_bundy.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0F0F12?text=Peter+Bundy'" class="w-full h-full object-cover object-top" alt="Peter Bundy">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="https://placehold.co/400x500/E5E7EB/0A0A0D?text=Shomit+Nazare" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Shomit Nazare">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">12</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">PETER BUNDY</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">SHOMIT NAZARE</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Junior</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Junior</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 13 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="Peter_Mic.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0F0F12?text=Peter+Micciche'" class="w-full h-full object-cover object-top" alt="Peter Micciche">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="https://placehold.co/400x500/E5E7EB/0A0A0D?text=Stephen+Langelier" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Stephen Langelier">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">13</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">PETER MICCICHE</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">STEPHEN LANGELIER</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Roster</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Junior</span>
                             </div>
                         </div>
                     </div>
 
+                    <!-- SOPHOMORES -->
                     <!-- 14 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="reid_elv.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0F0F12?text=Reid+Elverson'" class="w-full h-full object-cover object-top" alt="Reid Elverson">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="Hemin.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0A0A0D?text=Hemin+Khalid'" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Hemin Khalid">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">14</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">REID ELVERSON</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">President / Varsity</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">HEMIN KHALID</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Freshman</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Sophomore</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 15 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="sidney_t.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0F0F12?text=Sidney+Trzepacz'" class="w-full h-full object-cover object-top" alt="Sidney Trzepacz">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="Edward.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0A0A0D?text=Eddie+Cameron'" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Eddie Cameron">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">15</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">SIDNEY TRZEPACZ</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Treasurer / Varsity</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">EDDIE CAMERON</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Freshman</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Sophomore</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 16 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="Stewart_G.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0F0F12?text=Stewart+Greenleaf'" class="w-full h-full object-cover object-top" alt="Stewart Greenleaf">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="Liam_Ke.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0A0A0D?text=Liam+Kehoe'" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Liam Kehoe">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">16</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">STEWART GREENLEAF</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">PR Officer / Varsity</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">LIAM KEHOE</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Freshman</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Sophomore</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 17 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="Teddy.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0F0F12?text=Theodore+Profit'" class="w-full h-full object-cover object-top" alt="Theodore Profit">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="Max_Gram.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0A0A0D?text=Max+Gramling'" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Max Gramling">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">17</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">THEODORE PROFIT</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Vice President / Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">MAX GRAMLING</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Junior</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Sophomore</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 18 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="Tyler.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0F0F12?text=Tyler+Williams'" class="w-full h-full object-cover object-top" alt="Tyler Williams">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="Anirudh_K.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0A0A0D?text=Anirudh+Krishna'" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Anirudh Krishna">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">18</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">TYLER WILLIAMS</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">ANIRUDH KRISHNA</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Freshman</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Sophomore</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 19 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="bertram.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0F0F12?text=Bertram+Bendsen'" class="w-full h-full object-cover object-top" alt="Bertram Bendsen">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="Marios_K.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0A0A0D?text=Marios+Kalpakis'" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Marios Kalpakis">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">19</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">BERTRAM BENDSEN</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">MARIOS KALPAKIS</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Junior</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Sophomore</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 20 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="https://placehold.co/400x500/E5E7EB/0F0F12?text=Pyotr+Sergeevykh" class="w-full h-full object-cover object-top" alt="Pyotr Sergeevykh">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="https://placehold.co/400x500/E5E7EB/0A0A0D?text=Erik+Johnson" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Erik Johnson">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">20</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">PYOTR SERGEEVYKH</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">ERIK JOHNSON</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Junior</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Sophomore</span>
                             </div>
                         </div>
                     </div>
 
+                    <!-- FRESHMEN -->
                     <!-- 21 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="https://placehold.co/400x500/E5E7EB/0F0F12?text=David+Chen" class="w-full h-full object-cover object-top" alt="David Chen">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="Justin_M.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0A0A0D?text=Justin+Mooney'" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Justin Mooney">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">21</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">DAVID CHEN</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">JUSTIN MOONEY</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Junior</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Freshman</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 22 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="https://placehold.co/400x500/E5E7EB/0F0F12?text=Derrick+Jones" class="w-full h-full object-cover object-top" alt="Derrick Jones">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="reid_elv.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0A0A0D?text=Reid+Elverson'" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Reid Elverson">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">22</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">DERRICK JONES</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">REID ELVERSON</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Senior</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Freshman</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 23 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="https://placehold.co/400x500/E5E7EB/0F0F12?text=Erik+Johnson" class="w-full h-full object-cover object-top" alt="Erik Johnson">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="sidney_t.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0A0A0D?text=Sidney+Trzepacz'" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Sidney Trzepacz">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">23</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">ERIK JOHNSON</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">SIDNEY TRZEPACZ</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Sophomore</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Freshman</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 24 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="https://placehold.co/400x500/E5E7EB/0F0F12?text=Shomit+Nazare" class="w-full h-full object-cover object-top" alt="Shomit Nazare">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="Stewart_G.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0A0A0D?text=Stewart+Greenleaf'" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Stewart Greenleaf">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">24</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">SHOMIT NAZARE</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">STEWART GREENLEAF</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Junior</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Freshman</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 25 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="https://placehold.co/400x500/E5E7EB/0F0F12?text=William+Fingles" class="w-full h-full object-cover object-top" alt="William Fingles">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="Tyler.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0A0A0D?text=Tyler+Williams'" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Tyler Williams">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">25</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">WILLIAM FINGLES</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">TYLER WILLIAMS</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Senior</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Freshman</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 26 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="https://placehold.co/400x500/E5E7EB/0F0F12?text=Brady+McLaren" class="w-full h-full object-cover object-top" alt="Brady McLaren">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="https://placehold.co/400x500/E5E7EB/0A0A0D?text=Brady+McLaren" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Brady McLaren">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">26</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Apparel Officer / Roster</p>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Apparel Officer / Roster</p>
                                 <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">BRADY MCLAREN</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Freshman</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Freshman</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 27 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="https://placehold.co/400x500/E5E7EB/0F0F12?text=Stephen+Langelier" class="w-full h-full object-cover object-top" alt="Stephen Langelier">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="https://placehold.co/400x500/E5E7EB/0A0A0D?text=Hridik+Singh" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Hridik Singh">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">27</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">STEPHEN LANGELIER</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">HRIDIK SINGH</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Junior</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Freshman</span>
                             </div>
                         </div>
                     </div>
 
+                    <!-- UNSPECIFIED CLASS -->
                     <!-- 28 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="https://placehold.co/400x500/E5E7EB/0F0F12?text=Adrian+Peña" class="w-full h-full object-cover object-top" alt="Adrian Peña">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="Peter_Mic.jpg" onerror="this.src='https://placehold.co/400x500/E5E7EB/0A0A0D?text=Peter+Micciche'" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Peter Micciche">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">28</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">ADRIAN PEÑA</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">PETER MICCICHE</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Roster</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Roster</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- 29 -->
-                    <div class="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 flex flex-col">
-                        <div class="relative bg-gray-200 aspect-[4/5]">
-                            <img src="https://placehold.co/400x500/E5E7EB/0F0F12?text=Hridik+Singh" class="w-full h-full object-cover object-top" alt="Hridik Singh">
+                    <div class="bg-gray-100 rounded-lg overflow-hidden border-2 border-umd-black flex flex-col group shadow-[4px_4px_0px_0px_#0A0A0D]">
+                        <div class="relative bg-gray-200 aspect-[4/5] overflow-hidden">
+                            <img src="https://placehold.co/400x500/E5E7EB/0A0A0D?text=Adrian+Peña" class="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition duration-300" alt="Adrian Peña">
                             <span class="absolute bottom-0 left-0 bg-umd-black text-umd-white font-bebas text-lg px-2.5 py-0.5 leading-tight">29</span>
                         </div>
-                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t border-gray-200">
+                        <div class="p-3.5 bg-white flex-grow flex flex-col justify-between border-t-2 border-umd-black">
                             <div>
-                                <p class="text-[10px] font-bold uppercase tracking-wider text-gray-500">Roster</p>
-                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">HRIDIK SINGH</h3>
+                                <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500">Roster</p>
+                                <h3 class="font-bebas text-2xl text-umd-black leading-snug uppercase mt-0.5">ADRIAN PEÑA</h3>
                             </div>
                             <div class="mt-2 pt-2 border-t border-gray-100">
-                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded">Freshman</span>
+                                <span class="inline-block bg-gray-100 text-gray-800 text-[11px] font-bold px-2 py-0.5 rounded uppercase">Roster</span>
                             </div>
                         </div>
                     </div>
@@ -1229,18 +1258,18 @@
         <section id="donate" class="view-section w-full max-w-5xl mx-auto px-4 py-16">
             <div class="flex justify-between items-end mb-12 border-b-8 border-umd-black pb-4">
                 <div>
-                    <p class="font-bold text-umd-red uppercase tracking-widest text-sm mb-1">Support Maryland Men's Crew</p>
+                    <p class="font-black text-umd-red uppercase tracking-widest text-sm mb-1">Support Maryland Men's Crew</p>
                     <h2 class="font-bebas text-7xl md:text-8xl tracking-tight m-0 text-umd-black leading-none">DONATE</h2>
                 </div>
-                <div class="bg-umd-red text-umd-white font-bebas text-3xl px-6 py-2 border-4 border-umd-black">ALUMNI &amp; PARENTS</div>
+                <div class="bg-umd-red text-umd-white font-bebas text-3xl px-6 py-2 border-4 border-umd-black shadow-[4px_4px_0px_0px_#0A0A0D]">ALUMNI &amp; PARENTS</div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="bg-umd-white border-4 border-umd-black p-8 shadow-[8px_8px_0px_0px_#E21833] flex flex-col justify-between">
                     <div>
-                        <span class="bg-umd-red text-umd-white font-bold text-xs uppercase tracking-widest px-3 py-1">Tax-Deductible Gift</span>
+                        <span class="bg-umd-red text-umd-white font-black text-xs uppercase tracking-widest px-3 py-1">Tax-Deductible Gift</span>
                         <h3 class="font-bebas text-5xl mt-4 mb-3 uppercase">UMD Giving Portal</h3>
-                        <p class="text-gray-700 font-medium mb-6">
+                        <p class="text-gray-800 font-medium mb-6">
                             Make a tax-deductible contribution directly through the University of Maryland Foundation to fund racing shells, oars, ergometers, and regatta travel for our student-athletes.
                         </p>
                     </div>
@@ -1251,69 +1280,14 @@
 
                 <div class="bg-umd-white border-4 border-umd-black p-8 shadow-[8px_8px_0px_0px_#FFD200] flex flex-col justify-between">
                     <div>
-                        <span class="bg-umd-gold text-umd-black font-bold text-xs uppercase tracking-widest px-3 py-1 border border-umd-black">Equipment &amp; Regatta Fund</span>
+                        <span class="bg-umd-gold text-umd-black font-black text-xs uppercase tracking-widest px-3 py-1 border border-umd-black">Equipment &amp; Regatta Fund</span>
                         <h3 class="font-bebas text-5xl mt-4 mb-3 uppercase">Sponsor a Boat or Oar</h3>
-                        <p class="text-gray-700 font-medium mb-6">
+                        <p class="text-gray-800 font-medium mb-6">
                             Interested in supporting equipment, naming a shell, or connecting with alumni? Reach out directly to our executive board.
                         </p>
                     </div>
                     <button type="button" onclick="switchView('board')" class="w-full bg-umd-gold text-umd-black font-bebas text-3xl py-3 border-4 border-umd-black hover:bg-umd-black hover:text-umd-white transition cursor-pointer">
                         CONTACT BOARD LEADERSHIP &rarr;
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==================== TEAM STORE VIEW ==================== -->
-        <section id="store" class="view-section w-full max-w-6xl mx-auto px-4 py-16">
-            <div class="flex justify-between items-end mb-12 border-b-8 border-umd-black pb-4">
-                <div>
-                    <p class="font-bold text-umd-red uppercase tracking-widest text-sm mb-1">Official Gear &amp; Apparel</p>
-                    <h2 class="font-bebas text-7xl md:text-8xl tracking-tight m-0 text-umd-black leading-none">TEAM STORE</h2>
-                </div>
-                <div class="bg-umd-black text-umd-gold font-bebas text-3xl px-6 py-2 border-4 border-umd-black">TERPS GEAR</div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-umd-white border-4 border-umd-black p-6 flex flex-col justify-between shadow-[6px_6px_0px_0px_#0F0F12]">
-                    <div>
-                        <div class="bg-umd-black h-56 mb-4 flex items-center justify-center border-2 border-umd-black">
-                            <i class="fa-solid fa-shirt text-6xl text-umd-red"></i>
-                        </div>
-                        <p class="text-xs font-bold uppercase text-umd-red">Racing Gear</p>
-                        <h3 class="font-bebas text-4xl uppercase mb-2">Racing Unisuit</h3>
-                        <p class="text-sm text-gray-600 mb-6">Official Maryland Men's Crew competition unisuit.</p>
-                    </div>
-                    <button type="button" onclick="switchView('board')" class="w-full bg-umd-black text-umd-white font-bebas text-2xl py-2.5 border-2 border-umd-black hover:bg-umd-red transition cursor-pointer">
-                        CONTACT APPAREL OFFICER
-                    </button>
-                </div>
-
-                <div class="bg-umd-white border-4 border-umd-black p-6 flex flex-col justify-between shadow-[6px_6px_0px_0px_#0F0F12]">
-                    <div>
-                        <div class="bg-umd-black h-56 mb-4 flex items-center justify-center border-2 border-umd-black">
-                            <i class="fa-solid fa-vest text-6xl text-umd-gold"></i>
-                        </div>
-                        <p class="text-xs font-bold uppercase text-umd-red">Outerwear</p>
-                        <h3 class="font-bebas text-4xl uppercase mb-2">Boathouse Shell Jacket</h3>
-                        <p class="text-sm text-gray-600 mb-6">Weather-resistant team jacket for early morning river practices and regattas.</p>
-                    </div>
-                    <button type="button" onclick="switchView('board')" class="w-full bg-umd-black text-umd-white font-bebas text-2xl py-2.5 border-2 border-umd-black hover:bg-umd-red transition cursor-pointer">
-                        CONTACT APPAREL OFFICER
-                    </button>
-                </div>
-
-                <div class="bg-umd-white border-4 border-umd-black p-6 flex flex-col justify-between shadow-[6px_6px_0px_0px_#0F0F12]">
-                    <div>
-                        <div class="bg-umd-black h-56 mb-4 flex items-center justify-center border-2 border-umd-black">
-                            <i class="fa-solid fa-hat-cowboy text-6xl text-umd-white"></i>
-                        </div>
-                        <p class="text-xs font-bold uppercase text-umd-red">Supporter Gear</p>
-                        <h3 class="font-bebas text-4xl uppercase mb-2">Regatta Hat &amp; Hoodie</h3>
-                        <p class="text-sm text-gray-600 mb-6">Rep Maryland Crew on the shoreline with custom team hats and hoodies.</p>
-                    </div>
-                    <button type="button" onclick="switchView('board')" class="w-full bg-umd-black text-umd-white font-bebas text-2xl py-2.5 border-2 border-umd-black hover:bg-umd-red transition cursor-pointer">
-                        CONTACT APPAREL OFFICER
                     </button>
                 </div>
             </div>
@@ -1325,13 +1299,13 @@
     <footer class="bg-umd-black text-umd-white border-t-8 border-umd-red py-12 px-6 mt-auto">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
             <div class="flex items-center gap-4 text-center md:text-left">
-                <img src="Logo_M_3.png" onerror="this.src='https://placehold.co/64x56/0F0F12/FFD200?text=M'" alt="Maryland Crew Logo" class="w-16 h-14 object-contain">
+                <img src="Logo_M_3.png" onerror="this.src='https://placehold.co/64x56/0A0A0D/FFD200?text=M'" alt="Maryland Crew Logo" class="w-16 h-14 object-contain">
                 <div>
                     <h2 class="font-bebas text-4xl tracking-wider text-umd-white">MARYLAND MEN'S CREW</h2>
                     <p class="text-xs uppercase tracking-widest text-gray-400 mt-1">Bladensburg Waterfront Park &bull; Cole Field House &bull; College Park, MD</p>
                 </div>
             </div>
-            <div class="flex flex-wrap justify-center gap-6 font-bold text-xs uppercase tracking-widest">
+            <div class="flex flex-wrap justify-center gap-6 font-extrabold text-xs uppercase tracking-widest">
                 <button type="button" onclick="switchView('home')" class="hover:text-umd-gold cursor-pointer">Home</button>
                 <button type="button" onclick="switchView('roster')" class="hover:text-umd-gold cursor-pointer">Roster</button>
                 <button type="button" onclick="switchView('schedule')" class="hover:text-umd-gold cursor-pointer">Schedule</button>
@@ -1393,7 +1367,7 @@
                 fallList.classList.add('hidden');
                 fallList.classList.remove('flex');
 
-                btnSpring.className = 'bg-umd-red text-umd-white font-bebas text-3xl px-6 py-2 border-4 border-umd-black cursor-pointer';
+                btnSpring.className = 'bg-umd-red text-umd-white font-bebas text-3xl px-6 py-2 border-4 border-umd-black shadow-[4px_4px_0px_0px_#0A0A0D] cursor-pointer';
                 btnFall.className = 'bg-umd-white text-umd-black font-bebas text-3xl px-6 py-2 border-4 border-umd-black hover:bg-umd-gold transition cursor-pointer';
             } else {
                 fallList.classList.remove('hidden');
@@ -1401,7 +1375,7 @@
                 springList.classList.add('hidden');
                 springList.classList.remove('flex');
 
-                btnFall.className = 'bg-umd-red text-umd-white font-bebas text-3xl px-6 py-2 border-4 border-umd-black cursor-pointer';
+                btnFall.className = 'bg-umd-red text-umd-white font-bebas text-3xl px-6 py-2 border-4 border-umd-black shadow-[4px_4px_0px_0px_#0A0A0D] cursor-pointer';
                 btnSpring.className = 'bg-umd-white text-umd-black font-bebas text-3xl px-6 py-2 border-4 border-umd-black hover:bg-umd-gold transition cursor-pointer';
             }
         }
